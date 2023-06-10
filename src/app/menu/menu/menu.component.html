@@ -1,0 +1,80 @@
+<mat-toolbar color="primary" class="mb-4">
+  <div class="navbar-container">
+    <div class="nav-links">
+      <a class="navbar-brand" routerLink="/">
+        <mat-icon class="icon-flight rotate">flight</mat-icon>
+        <span>Pacific Adventure</span>
+      </a>
+
+
+
+      <ul class="navbar-nav">
+<!--        <li class="nav-item">
+          <a class="nav-link" routerLink="/"><mat-icon>home</mat-icon> Inicio</a>
+        </li>-->
+        <li class="nav-item" *ngIf="isLogged">
+          <a class="nav-link" routerLink="/list"><mat-icon>list_alt</mat-icon> Lista</a>
+        </li>
+
+
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/new"><mat-icon>add_circle</mat-icon> Nuevo</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-inline">
+    <form>
+      <button *ngIf="!isLogged" mat-flat-button color="accent" routerLink="/login" class="form-button">
+        <mat-icon>login</mat-icon> Iniciar Sesión
+      </button>
+      <button *ngIf="isLogged" mat-flat-button color="warn" (click)="onLogOut()" class="form-button">
+        <mat-icon>exit_to_app</mat-icon> Cerrar Sesión
+      </button>
+    </form>
+  </div>
+</mat-toolbar>
+
+
+
+
+
+
+
+
+
+
+
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/"><i class="fas fa-home"></i> Inicio</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogged">
+        <a class="nav-link" routerLink="/lista"><i class="far fa-list-alt"></i> Lista</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link" routerLink="/nuevo"><i class="fas fa-plus-circle"></i> Nuevo</a>
+      </li>
+
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+      <button *ngIf="!isLogged" class="btn btn-outline-success my-2 my-sm-0" routerLink="/login" type="submit">
+        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+      </button>
+      <button *ngIf="isLogged" class="btn btn-outline-danger my-2 my-sm-0" (click)="onLogOut()" type="reset">
+        <i class="fas fa-sign-in-alt"></i>
+        <i class="fas fa-door-open"></i> Cerrar Sesión
+      </button>
+    </form>
+
+  </div>
+</nav>-->

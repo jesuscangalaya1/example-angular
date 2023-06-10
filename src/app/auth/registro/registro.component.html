@@ -1,0 +1,123 @@
+<app-menu></app-menu>
+
+<div class="container d-flex justify-content-center">
+  <div class="card custom-card">
+    <div class="card-header">
+      <h2 class="text-center">Crear Cuenta</h2>
+    </div>
+    <div class="card-body">
+      <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+
+        <div class="form-group">
+          <mat-form-field class="centered-field">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" name="nombre" id="nombre" [(ngModel)]="nombre" required>
+            <mat-icon matSuffix>account_circle</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="centered-field">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput type="text" name="nombreUsuario" id="nombreUsuario" [(ngModel)]="nombreUsuario" required>
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="centered-field">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" name="password" id="password" [(ngModel)]="password" required>
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="hidePassword ? 'Mostrar contraseña' : 'Ocultar contraseña'">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="centered-field">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput type="email" name="email" id="email" [(ngModel)]="email" required>
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+        </div>
+
+
+
+        <div class="form-group text-center">
+          <button mat-raised-button color="primary" [disabled]="!f.valid">
+            <mat-icon>person_add</mat-icon> Crear Cuenta
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="card-footer">
+      <div class="text-center">
+        <p class="mb-0"></p>
+        <button mat-button color="primary" routerLink="/login" class="hover-button">
+          <mat-icon>person_add</mat-icon> Iniciar Sesión
+        </button>
+      </div>
+      <div class="text-center">
+        <p class="mb-0"></p>
+        <button mat-button color="warn" routerLink="/sendemail" class="hover-button">
+          <mat-icon>mail</mat-icon> Recuperar Contraseña
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!--
+<div class="container d-flex justify-content-center">
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/registro">Crear Cuenta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sendemail">Olvidé mi Contraseña</a>
+        </li>
+
+      </ul>
+    </div>
+    <div class="card-body">
+      <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="nombreUsuario">Nombre de Usuario</label>
+          <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" [(ngModel)]="nombreUsuario"
+                 required>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" name="password" id="password" class="form-control" [(ngModel)]="password" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="text" name="email" id="email" class="form-control" [(ngModel)]="email" required>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">
+            <i class="fas fa-sign-in-alt"></i> Crear Cuenta
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+-->

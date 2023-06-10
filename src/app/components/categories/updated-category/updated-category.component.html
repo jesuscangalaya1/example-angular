@@ -1,0 +1,22 @@
+
+
+
+<div *ngIf="category">
+  <h1>Update Category</h1>
+
+  <form (ngSubmit)="onUpdateCategory()" #f="ngForm">
+    <div class="form-group">
+      <label for="name">Category Name</label>
+      <input type="text" class="form-control" [(ngModel)]="category.name" id="name" name="name" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Update</button>
+  </form>
+</div>
+
+
+
+
+
+
+
+

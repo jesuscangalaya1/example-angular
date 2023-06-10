@@ -1,0 +1,68 @@
+<app-menu></app-menu>
+
+<div class="container d-flex justify-content-center">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-center">Introduce tu Nueva Contraseña</h3>
+    </div>
+    <div class="card-body">
+      <form #f="ngForm" (ngSubmit)="onChangePassword()" novalidate>
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" name="password" id="password" [(ngModel)]="password" required>
+            <mat-icon matSuffix (click)="togglePasswordVisibility()" [ngClass]="{'active': !hidePassword}">visibility</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Confirmar Contraseña</mat-label>
+            <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" name="confirmPassword" id="confirmPassword" [(ngModel)]="confirmPassword" required>
+            <mat-icon matSuffix (click)="toggleConfirmPasswordVisibility()" [ngClass]="{'active': !hideConfirmPassword}">visibility</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <button mat-raised-button color="primary" [disabled]="!f.valid" type="submit">
+            <mat-icon>vpn_key</mat-icon> Cambiar Contraseña
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--<div class="container d-flex justify-content-center">
+  <div class="card">
+    <div class="card-header">
+      <h3>Introduce tu Nueva Contraseña</h3>
+    </div>
+    <div class="card-body">
+      <form #f="ngForm" (ngSubmit)="onChangePassword()" novalidate>
+        <div class="form-group text-center">
+          <label for="password">contraseña</label>
+          <input type="password" name="password" id="password" class="form-control"
+                 [(ngModel)]="password" required>
+        </div>
+
+        <div class="form-group text-center">
+          <label for="confirmPassword">confirmar contraseña</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
+                 [(ngModel)]="confirmPassword" required>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-outline-success btn-block" [disabled]="!f.valid" type="submit">
+            <i class="fas fa-sign-in-alt"></i> Cambiar Contraseña
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>-->
