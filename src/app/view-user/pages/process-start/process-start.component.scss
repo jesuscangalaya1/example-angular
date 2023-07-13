@@ -1,0 +1,68 @@
+/* Estilos para la sección de procesos */
+.process-title {
+  background-color: #fff;
+  color: #007bff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+.process-title::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 50px;
+  background-color: #007bff;
+  margin: 10px auto;
+}
+
+.process-title.text-primary {
+  color: #007bff;
+}
+
+.process-title.text-primary::after {
+  background-color: #007bff;
+}
+
+.process h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.process .position-relative {
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.process .position-relative i {
+  font-size: 3rem;
+}
+
+.process h5 {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.process hr {
+  height: 2px;
+  background-color: #007bff;
+  margin-bottom: 1px;
+}
+
+.process p {
+  margin-bottom: 0;
+}
+
+.process .col-lg-4:first-child .position-relative {
+  margin-top: 0;
+}
+
+.process .col-lg-4:last-child .position-relative {
+  margin-bottom: 0;
+}

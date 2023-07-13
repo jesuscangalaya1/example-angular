@@ -1,5 +1,21 @@
-<app-menu></app-menu>
-<div class="container">
+
+
+
+<h2>Crear nueva categoría</h2>
+<mat-form-field>
+  <input matInput [(ngModel)]="name" placeholder="Nombre de la categoría">
+</mat-form-field>
+<div class="dialog-buttons" >
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="create()" >Guardar</button>
+</div>
+
+
+
+
+
+
+<!--<div class="container">
   <div class="row mt-5">
     <div class="col-md-4 mx-auto">
       <form (ngSubmit)="onCreateCategory()" novalidate #f="ngForm">
@@ -17,4 +33,4 @@
       </form>
     </div>
   </div>
-</div>
+</div>-->

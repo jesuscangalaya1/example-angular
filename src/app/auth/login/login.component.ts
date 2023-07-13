@@ -4,6 +4,7 @@ import {TokenService} from "../../services/token.service";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {NgOneTapService} from "ng-google-one-tap";
 
 @Component({
   selector: 'app-login',
@@ -24,11 +25,14 @@ export class LoginComponent implements OnInit {
     private tokenService: TokenService,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private onetap: NgOneTapService,
+
   ) {
   }
 
   ngOnInit() {
+
   }
 
 
@@ -38,8 +42,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginUsuario).subscribe(
       data => {
         this.tokenService.setToken(data.token);
-        this.router.navigate(['/']);
-      },
+        if (this.tokenService.isAdmin()) {
+          this.router.navigate(['/flights']); // Redirige al administrador
+        } else {
+          this.router.navigate(['/index-home']); // Redirige al usuario normal
+        }      },
       err => {
         this.errMsj = err.error.mensaje;
         this.toastr.error(this.errMsj, 'Fail', {
@@ -52,6 +59,12 @@ export class LoginComponent implements OnInit {
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
+
+
+
+  // GMAIL - AUTH ...
+
+
 
 }
 

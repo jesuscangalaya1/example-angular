@@ -4,10 +4,19 @@
 
 export const environment = {
   production: false,
-  URL: 'http://localhost:8080/api/',
+
+  clientId: '795046817845-esi7u822okbsn8mnvcvgr06lockjslsm.apps.googleusercontent.com',
+
+  //URL: 'http://localhost:8080/api/',
   productoURL: 'http://localhost:8080/producto/',
-  authURL: 'http://localhost:8080/auth/',
-  changePasswordURL: 'http://localhost:8080/email-password/'
+  //authURL: 'http://localhost:8080/auth/',
+  //changePasswordURL: 'http://localhost:8080/email-password/'
+
+
+  URL:'https://agencia-viajes-api.onrender.com/api/',
+  authURL:'https://agencia-viajes-api.onrender.com/auth/',
+  changePasswordURL:'https://agencia-viajes-api.onrender.com/email-password/'
+
 };
 
 /*
@@ -18,4 +27,3 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
-

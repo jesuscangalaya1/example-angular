@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Realizar compra</h2>
+  <form (ngSubmit)="comprarVuelo()">
+    <div class="form-group">
+      <label for="amount">Cantidad:</label>
+      <input type="number" id="amount" name="amount" [(ngModel)]="amount" required>
+    </div>
+    <div class="form-group">
+      <label for="flightPrice">Precio:</label>
+      <input type="number" id="flightPrice" name="flightPrice" [(ngModel)]="flightPrice" required>
+    </div>
+    <!-- Elimina el campo flightId -->
+    <div class="form-group" style="display: none;">
+      <label for="flightId">ID del vuelo:</label>
+      <input type="number" id="flightId" name="flightId" [(ngModel)]="flightId" required>
+    </div>
+    <!-- Muestra la imagen del vuelo -->
+    <div class="form-group">
+      <label>Imagen del vuelo:</label>
+      <img [src]="flightImage" alt="Flight Image" style="width: 200px; height: auto;">
+    </div>
+    <button type="submit" routerLink="/pagar">PAGAR ... </button>
+  </form>
+</div>

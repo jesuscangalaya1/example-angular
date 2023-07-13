@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Lista de Compras</h2>
+  <div *ngIf="purchases && purchases.length > 0">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Total</th>
+        <th>Hora del Vuelo</th>
+        <th>imag</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let purchase of purchases">
+        <td>{{ purchase.id }}</td>
+        <td>{{ purchase.amount }}</td>
+        <td>{{ purchase.price }}</td>
+        <td>{{ purchase.total }}</td>
+        <td>{{ purchase.flights[0]?.departureTime }}</td>
+        <td><img [src]="purchase.flights[0]?.image" alt="Flight Image" style="width: 100px; height: auto;"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="purchases && purchases.length === 0">
+    <p>No hay compras disponibles.</p>
+  </div>
+  <div *ngIf="!purchases">
+    <p>Cargando compras...</p>
+  </div>
+</div>

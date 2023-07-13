@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {CategoryDTO} from "../../../models/category-dto";
 import {ProductoService} from "../../../services/producto.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {PruebaCategoryService} from "../../../services/prueba-category.service";
 import {catchError, tap, throwError} from "rxjs";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Product} from "../../../models/Product";
 
 @Component({
   selector: 'app-updated-category',
@@ -17,32 +18,24 @@ export class UpdatedCategoryComponent implements OnInit {
 
   //category: CategoryDTO= null;
   category: CategoryDTO = { id: 0, name: '' }; // inicializar la categoría con valores por defecto
+  id: number;
+
+
 
   constructor(
     private service: PruebaCategoryService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private dialogRef: MatDialogRef<UpdatedCategoryComponent>,
+    @Inject(MAT_DIALOG_DATA)private data: any
+
   ) {
+    this.id = data.id;
   }
 
   ngOnInit() {
-/*    const id = this.activatedRoute.snapshot.params['id'];
-    console.log('ID:', id); // Verifica el ID que se está pasando
-    this.service.getCategoryById(id).subscribe(
-      data => {
-        console.log('Response:', data); // Verifica la respuesta completa del servidor
-        this.category = data;
-        console.log(this.category); // Verifica si se asigna correctamente
-      },
-      err => {
-        this.router.navigate(['/']);
-        console.log(err);
-      }
-    );*/
     const id = this.activatedRoute.snapshot.params['id'];
-    this.service.getCategoryById(id).subscribe(
+    this.service.getCategoryById(this.id).subscribe(
       data => {
         this.category = data
       },
@@ -57,18 +50,16 @@ export class UpdatedCategoryComponent implements OnInit {
 
 
   onUpdateCategory() {
-    const id = this.activatedRoute.snapshot.params['id'];
-    this.service.updateCategory(id, this.category).subscribe(
+    this.service.updateCategory(this.id, this.category).subscribe(
       data => {
-        this.router.navigate(['/list']);
+        this.dialogRef.close(1);
       },
       err => {
         console.log(err);
-
+        this.dialogRef.close(2);
       }
     );
   }
-
 
 
 }

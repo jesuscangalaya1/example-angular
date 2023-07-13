@@ -1,0 +1,81 @@
+/* Estilos para la sección de paquetes */
+.section-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.package-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.package-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.package-item .border-bottom {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.package-item small {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.package-item h3 {
+  font-size: 1.8rem;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.package-item .fa-star {
+  color: #f8c10e;
+  font-size: 1.2rem;
+}
+
+.package-item p {
+  font-size: 1rem;
+  color: #888;
+}
+
+.package-item a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.package-item .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: all 0.3s ease;
+}
+
+.package-item .btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.package-item .btn-primary:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+
+/*** Package ***/
+.package-item {
+  box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+}
+
+.package-item img {
+  transition: .5s;
+}
+
+.package-item:hover img {
+  transform: scale(1.1);
+}
+

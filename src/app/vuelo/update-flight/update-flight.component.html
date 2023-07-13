@@ -1,0 +1,44 @@
+<div class="create-flight">
+  <h2>Create Flight</h2>
+  <form (submit)="updateFlight()">
+    <div>
+      <label>Capacity:</label>
+      <input type="number" [(ngModel)]="capacidad" name="capacity" required>
+    </div>
+    <div>
+      <label>Duration:</label>
+      <input type="text" [(ngModel)]="duracion" name="duration" required>
+    </div>
+    <div>
+      <label>Price:</label>
+      <input type="number" [(ngModel)]="precio" name="price" required>
+    </div>
+    <div>
+      <label>Departure Time:</label>
+      <input type="text" [(ngModel)]="horaSalida" name="departureTime" required>
+    </div>
+    <div>
+      <label>Itinerary:</label>
+
+      <input type="number" [(ngModel)]="itineraryId" name="itineraryId" required>
+
+    </div>
+
+    <!-- update-flight.component.html -->
+    <div>
+      <label>Image:</label>
+      <input type="file" (change)="onFileSelected($event)" name="file" accept="image/*" required>
+      <span class="selected-file" *ngIf="flightImageURL">{{ flightImageURL }}</span>
+    </div>
+
+
+
+
+
+
+    <div class="button-group">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!formularioValido()">Create</button>
+      <button mat-raised-button color="accent" (click)="cancel()">cancelar</button>
+    </div>
+  </form>
+</div>

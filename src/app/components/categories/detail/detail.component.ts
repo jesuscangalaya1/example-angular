@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Producto} from "../../../models/producto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PruebaCategoryService} from "../../../services/prueba-category.service";
 import {CategoryDTO} from "../../../models/category-dto";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-detail',
@@ -11,39 +12,28 @@ import {CategoryDTO} from "../../../models/category-dto";
 })
 export class DetailComponent implements OnInit {
 
-  category: CategoryDTO = { name: '' };
+  category: CategoryDTO ;
 
   constructor(private service: PruebaCategoryService,
               private activatedRoute: ActivatedRoute,
-              private router: Router
+              private router: Router,
+              @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.category = data.category;
   }
 
   ngOnInit() {
-/*    const id = this.activatedRoute.snapshot.params['id'];
+    const id = this.data.id;
     this.service.getCategoryById(id).subscribe(
       data => {
         console.log(data);
         this.category = data;
-        console.log(this.category);
-      },
-      err => {
-        console.log(err);
-        this.volver();
-      }
-    );*/
-    const id = this.activatedRoute.snapshot.params['id'];
-    this.service.getCategoryById(id).subscribe(
-      data => {
-        console.log(data);
-        this.category.name = data.name;
       },
       err => {
         console.log(err);
         this.volver();
       }
     );
-
   }
 
 

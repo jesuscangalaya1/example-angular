@@ -1,7 +1,27 @@
 
 
 
-<div *ngIf="category">
+<h2>Editar Categoría</h2>
+
+<form (ngSubmit)="onUpdateCategory()">
+  <div>
+    <label for="categoryName">Nombre de la categoría:</label>
+    <input type="hidden" [(ngModel)]="category.id" name="id">
+
+    <input type="text" id="categoryName" [(ngModel)]="category.name" name="categoryName" required>
+  </div>
+
+  <div>
+    <button type="submit">Guardar</button>
+  </div>
+</form>
+
+
+
+
+
+
+<!--<div *ngIf="category">
   <h1>Update Category</h1>
 
   <form (ngSubmit)="onUpdateCategory()" #f="ngForm">
@@ -11,7 +31,7 @@
     </div>
     <button class="btn btn-primary" type="submit">Update</button>
   </form>
-</div>
+</div>-->
 
 
 

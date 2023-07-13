@@ -1,0 +1,91 @@
+/* Estilos para la sección del equipo */
+.team-title {
+  background-color: #fff;
+  color: #007bff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+.team-title::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 50px;
+  background-color: #007bff;
+  margin: 10px auto;
+}
+
+.team-title.text-primary {
+  color: #007bff;
+}
+
+.team-title.text-primary::after {
+  background-color: #007bff;
+}
+
+.team-item {
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.team-item:hover {
+  transform: translateY(-5px);
+}
+
+.team-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.team-item .position-relative {
+  margin-top: -19px;
+}
+
+.team-item .position-relative a {
+  margin: 0 5px;
+}
+
+.team-item .text-center {
+  padding: 4rem;
+}
+
+.team-item h5 {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.team-item small {
+  font-size: 0.875rem;
+  color: #777;
+}
+
+/*** Team ***/
+.team-item {
+  box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+}
+
+.team-item img {
+  transition: .5s;
+}
+
+.team-item:hover img {
+  transform: scale(1.1);
+}
+
+.team-item .btn {
+  background: #FFFFFF;
+  color: var(--primary);
+  border-radius: 20px;
+  border-bottom: 1px solid var(--primary);
+}
+
+.team-item .btn:hover {
+  background: var(--primary);
+  color: #FFFFFF;
+}

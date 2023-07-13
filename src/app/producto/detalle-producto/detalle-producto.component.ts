@@ -24,18 +24,7 @@ export class DetalleProductoComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.params['id'];
-    this.service.getProductById(id).subscribe(
-      data => {
-        this.producto = data;
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000, positionClass: 'toast-top-center',
-        });
-        this.volver();
-      }
-    );
+
   }
 
   volver(): void {

@@ -1,0 +1,212 @@
+
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <button (click)="drawer.toggle()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Material UI Tutorial</span>
+  <span class="example-spacer"></span>
+  <button routerLink="" mat-button>Home</button>
+  <button [matMenuTriggerFor]="lvl1master" mat-button>Master</button>
+  <mat-menu #lvl1master="matMenu">
+    <button [matMenuTriggerFor]="company" mat-menu-item>Company</button>
+    <button [matMenuTriggerFor]="customer" mat-menu-item>Customer</button>
+    <button [matMenuTriggerFor]="product" mat-menu-item>Product</button>
+  </mat-menu>
+
+  <mat-menu #company="matMenu">
+    <button mat-menu-item>Term</button>
+    <button mat-menu-item>Tax</button>
+    <button mat-menu-item>Currency</button>
+  </mat-menu>
+  <mat-menu #customer="matMenu">
+    <button mat-menu-item>Type</button>
+    <button mat-menu-item>Tax</button>
+  </mat-menu>
+  <mat-menu #product="matMenu">
+    <button mat-menu-item>Category</button>
+    <button [matMenuTriggerFor]="variant" mat-menu-item>Variant</button>
+    <button mat-menu-item>UOM</button>
+  </mat-menu>
+
+  <mat-menu #variant="matMenu">
+    <button mat-menu-item>Color</button>
+    <button mat-menu-item>Size</button>
+  </mat-menu>
+
+  <button routerLink="input" mat-button>Input</button>
+  <button routerLink="autocomplete" mat-button>Autocomplete</button>
+  <div class="form-inline">
+    <form>
+      <button *ngIf="!isLogged" mat-flat-button color="accent" routerLink="/login" class="form-button">
+        <mat-icon>login</mat-icon>
+        Iniciar Sesión
+      </button>
+      <button *ngIf="isLogged" mat-flat-button color="warn" (click)="onLogOut()" class="form-button">
+        <mat-icon>exit_to_app</mat-icon>
+        Cerrar Sesión
+      </button>
+    </form>
+  </div>
+</mat-toolbar>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+      <mat-list-item>
+        <button routerLink="card" mat-button>
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="" mat-button>
+          <mat-icon>home</mat-icon>
+          Home
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/list-itineraries" mat-button>
+          <mat-icon>explore</mat-icon>
+          itineraries
+        </button>
+
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/flights" mat-button>
+          <mat-icon>table</mat-icon>
+          Flights
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/export-data" mat-button>
+          <mat-icon>settings</mat-icon>
+          Export-Data
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/list-users" mat-button>
+          <mat-icon>help</mat-icon>
+          Users
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button>
+          <mat-icon>analytics</mat-icon>
+          analytics
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  // CONTENT ...
+
+  <mat-drawer-content>
+    <div style="text-align: center;min-height: 500px; margin-left: 20px; margin-right: 20px; margin-top: 40px; ">
+
+      <div class="filter-form">
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="priceMin" placeholder="Min Price" (ngModelChange)="validateInputs()">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="priceMax" placeholder="Max Price" (ngModelChange)="validateInputs()">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="filterFlights()" [disabled]="!isInputsValid">Filter</button>
+        <button mat-raised-button color="primary" (click)="clearInputs()">Clear</button>
+      </div>
+
+      <!-- update-flight.component.html -->
+      <div class="button-group">
+        <button mat-raised-button color="primary" (click)="exportFlightsData()">Export EXCEL </button> <!-- Agrega el botón de exportar -->
+        <button mat-raised-button color="primary" (click)="exportFlightsDataPdf()">Export PDF</button>
+
+      </div>
+
+
+
+
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="capacity">
+          <mat-header-cell *matHeaderCellDef>Capacity</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.capacity }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="duration">
+          <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.duration }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.price }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="departureTime">
+          <mat-header-cell *matHeaderCellDef>Departure Time</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.departureTime }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="iti-arrival">
+          <mat-header-cell *matHeaderCellDef>iti-arrival</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.itinerary.arrivalDate }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="iti-desparture">
+          <mat-header-cell *matHeaderCellDef>iti-desparture</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.itinerary.departureDate }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ori-city">
+          <mat-header-cell *matHeaderCellDef>ori-city</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.itinerary.origin.city }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ori-country">
+          <mat-header-cell *matHeaderCellDef>ori-country</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.itinerary.origin.country}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ori-airport">
+          <mat-header-cell *matHeaderCellDef>ori-airport</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.itinerary.origin.airport }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dest-city">
+          <mat-header-cell *matHeaderCellDef>dest-city</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.itinerary.location.city }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dest-country">
+          <mat-header-cell *matHeaderCellDef>dest-country</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.itinerary.location.country }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dest-airport">
+          <mat-header-cell *matHeaderCellDef>dest-airport</mat-header-cell>
+          <mat-cell *matCellDef="let flight">{{ flight.itinerary.location.airport }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let flight; columns: displayedColumns"></mat-row>
+      </mat-table>
+
+      <div class="paginator">
+        <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [length]="totalElements"
+                       (page)="onPageChange($event)">
+        </mat-paginator>
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+
+

@@ -1,0 +1,88 @@
+.container{
+  margin: 100px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.mat-paginator {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mat-paginator-page-size,
+.mat-paginator-range-label {
+  color: #333333;
+  font-weight: bold;
+}
+
+.mat-paginator-navigation button {
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.mat-paginator-navigation button:hover {
+  background-color: #0056b3;
+}
+
+.mat-paginator-navigation button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+
+.filter-form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.filter-form mat-form-field {
+  margin-right: 20px;
+  width: 150px;
+}
+
+.filter-form button {
+  margin-left: 10px;
+}
+
+
+.image-cell {
+  width: 100px; /* Ajusta el ancho de la celda de la imagen según tus necesidades */
+}
+
+.flight-image {
+  max-width: 100%; /* Ajusta el tamaño máximo de la imagen dentro de la celda */
+  max-height: 100px; /* Ajusta la altura máxima de la imagen dentro de la celda */
+  object-fit: contain; /* Controla cómo se ajusta la imagen dentro del contenedor */
+}
+
+.create-flight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  margin-top: -85px; /* Margen superior negativo */
+}
+
+.create-flight button {
+  margin-right: 20px;
+  width: 150px;
+}
+
+
+
+

@@ -1,0 +1,37 @@
+
+
+<h2>Actualizar Producto</h2>
+
+<form (ngSubmit)="onUpdateProduct()">
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="product.name" placeholder="Nombre" required>
+    <div *ngIf="!product.name" class="text-danger">El nombre es requerido.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="price">Precio</label>
+    <input type="number" class="form-control" id="price" name="price" [(ngModel)]="product.price" placeholder="Precio" required>
+    <div *ngIf="!product.price" class="text-danger">El precio es requerido.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Descripción</label>
+    <textarea class="form-control" id="description" name="description" [(ngModel)]="product.description" placeholder="Descripción" required></textarea>
+    <div *ngIf="!product.description" class="text-danger">La descripción es requerida.</div>
+  </div>
+
+  <div class="form-group">
+    <label for="categoryId">Categoría</label>
+    <select class="form-control" id="categoryId" name="categoryId" [(ngModel)]="product.categoryId" required>
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+
+    <div *ngIf="!product.categoryId" class="text-danger">La categoría es requerida.</div>
+  </div>
+
+  <div class="buttons">
+    <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.price || !product.description || !product.categoryId">Actualizar</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancelar</button>
+  </div>
+</form>

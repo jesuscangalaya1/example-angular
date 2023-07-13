@@ -1,0 +1,49 @@
+<app-menu></app-menu>
+
+
+<div class="container">
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Description</th>
+      <th scope="col">Categoria Nombre</th>
+      <th scope="col" *ngIf="isAdmin">Editar</th>
+      <th scope="col" *ngIf="isAdmin">Borrar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.category.name }}</td>
+      <td *ngIf="isAdmin">
+        <!--        <button class="btn btn-outline-warning" routerLink="/updated/{{category.id}}"><i class="far fa-edit"></i> Editar</button>-->
+        <button class="btn btn-outline-warning" (click)="editProduct(product.id)" ><i class="far fa-edit"></i> Editar</button>
+
+      </td>
+      <td *ngIf="isAdmin">
+        <button class="btn btn-outline-warning" (click)="detailProduct(product.id)" ><i class="far fa-edit"></i> detalle</button>
+      </td>
+      <td *ngIf="isAdmin">
+        <button class="btn btn-outline-danger" (click)="borrar(product.id)" ><i class="far fa-trash-alt"></i> Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="mt-3" *ngIf="isAdmin">
+    <!--    <button class="btn btn-outline-success btn-lg" routerLink="/new">
+          <i class="fas fa-plus-circle"></i> Nuevo Producto
+        </button>-->
+
+
+    <button class="btn btn-outline-success btn-lg" (click)="openCreateProductDialog()">
+      <i class="fas fa-plus-circle"></i> Nuevo Producto
+    </button>
+
+  </div>
+</div>

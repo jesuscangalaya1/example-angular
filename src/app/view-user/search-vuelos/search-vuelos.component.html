@@ -1,0 +1,104 @@
+<!-- inputs y fechas Start -->
+<!--
+
+<div>
+  <div class="container">
+    <mat-form-field>
+      <input type="text" matInput [formControl]="locationControl" placeholder="desstino" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <ng-container *ngIf="locationControl.value">
+          <mat-option *ngFor="let location of filteredLocations | async" [value]="location.city">
+            {{ location.city }}, {{ location.country }}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput [formControl]="locationControl" placeholder="origen" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <ng-container *ngIf="locationControl.value">
+          <mat-option *ngFor="let origins of filteredOrigins | async" [value]="origins.city">
+            {{ origins.city }}, {{ origins.country }}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Fecha De Vuelta</mat-label>
+      <input matInput [matDatepicker]="pickerVuelta" [formControl]="fechaVueltaControl"
+             [value]="fechaVueltaControl.value | date: 'yyyy-MM-dd'">
+      <mat-datepicker-toggle matSuffix [for]="pickerVuelta"></mat-datepicker-toggle>
+      <mat-datepicker #pickerVuelta></mat-datepicker>
+    </mat-form-field>
+
+    <div></div>
+
+    <mat-form-field>
+      <mat-label>Fecha De Ida</mat-label>
+      <input matInput [matDatepicker]="pickerIda" [formControl]="fechaIdaControl"
+             [value]="fechaIdaControl.value | date: 'yyyy-MM-dd'">
+      <mat-datepicker-toggle matSuffix [for]="pickerIda"></mat-datepicker-toggle>
+      <mat-datepicker #pickerIda></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="searchFlights()">Buscar vuelos</button>
+
+</div>
+-->
+
+<!-- inputs y fechas  END -->
+
+<mat-drawer-container autosize>
+  <mat-drawer-content>
+    <div style="text-align: center;min-height: 500px; margin-left: 20px; margin-right: 20px; margin-top: 40px;">
+
+      <div class="filter-form">
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="priceMin" placeholder="Min Price"
+                 (ngModelChange)="validateInputs()">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="priceMax" placeholder="Max Price"
+                 (ngModelChange)="validateInputs()">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="filterFlights()" [disabled]="!isInputsValid">Filter</button>
+        <button mat-raised-button color="primary" (click)="clearInputs()">Clear</button>
+      </div>
+
+      <div class="create-flight">
+
+        <div class="card-container">
+          <mat-card *ngFor="let flight of flights" class="flight-card">
+            <div class="card-header">
+              <img [src]="flight.image" alt="Flight Image" class="flight-image">
+            </div>
+            <div class="card-content">
+              <h2 class="flight-title">Flight Ticket</h2>
+              <p class="flight-info">Flight ID: {{ flight.id }}</p>
+              <p class="flight-info">Capacity: {{ flight.capacity }}</p>
+              <p class="flight-info">Duration: {{ flight.duration }}</p>
+              <p class="flight-info">Price: {{ flight.price }}</p>
+              <p class="flight-info">Departure Time: {{ flight.departureTime }}</p>
+            </div>
+            <div class="card-footer">
+              <button mat-raised-button color="primary" (click)="purchaseFlight(flight.id, flight.image, flight.price)" class="book-button">Book Now</button>
+            </div>
+          </mat-card>
+        </div>
+
+        <div class="paginator">
+          <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [length]="totalElements"
+                         (page)="onPageChange($event)">
+          </mat-paginator>
+        </div>
+
+      </div>
+
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+

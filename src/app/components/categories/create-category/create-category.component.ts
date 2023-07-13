@@ -4,6 +4,8 @@ import {PruebaCategoryService} from "../../../services/prueba-category.service";
 import {CategoryDTO} from "../../../models/category-dto";
 import {catchError, tap, throwError} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialogRef} from "@angular/material/dialog";
+import {TokenService} from "../../../services/token.service";
 
 @Component({
   selector: 'app-create-category',
@@ -13,16 +15,34 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class CreateCategoryComponent {
 
   name = '';
+  isAdmin = false;
+
+
 
   constructor(private router: Router ,
               private service: PruebaCategoryService,
-              private snackBar: MatSnackBar
+              private snackBar: MatSnackBar,
+              public dialogRef: MatDialogRef<CreateCategoryComponent>,
+              private tokenService: TokenService,
+
 
   ) {
   }
 
+  cancel(): void {
+    this.dialogRef.close();
+    this.isAdmin = this.tokenService.isAdmin();
 
-  onCreateCategory(){
+  }
+
+  create(): void {
+    if (this.name) {
+      this.dialogRef.close(this.name);
+    }
+  }
+
+
+/*  onCreateCategory(){
     const category = new CategoryDTO(this.name);
     this.service.onCreate(category)
       .pipe(
@@ -43,7 +63,7 @@ export class CreateCategoryComponent {
         })
       )
       .subscribe();
-  }
+  }*/
 
 
 }

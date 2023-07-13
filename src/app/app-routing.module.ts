@@ -7,74 +7,99 @@ import {RegistroComponent} from "./auth/registro/registro.component";
 import {SendEmailComponent} from "./changepassword/send-email/send-email.component";
 import {ChangePasswordComponent} from "./changepassword/change/change.component";
 import {ProdGuardService} from "./guards/prod-guard.service";
-import {ListaProductoComponent} from "./producto/lista-producto/lista-producto.component";
-import {DetalleProductoComponent} from "./producto/detalle-producto/detalle-producto.component";
-import {NuevoProductoComponent} from "./producto/nuevo-producto/nuevo-producto.component";
-import {EditarProductoComponent} from "./producto/editar-producto/editar-producto.component";
-import {ListCategoriesComponent} from "./components/categories/list-categories/list-categories.component";
-import {CreateCategoryComponent} from "./components/categories/create-category/create-category.component";
-import {UpdatedCategoryComponent} from "./components/categories/updated-category/updated-category.component";
-import {DetailComponent} from "./components/categories/detail/detail.component";
+import {ListFlightComponent} from "./vuelo/list-flight/list-flight.component";
+import {ViewFlightComponent} from "./vuelo/view-flight/view-flight.component";
+import {ExportDataComponent} from "./exports/export-data/export-data.component";
+import {IndexUserComponent} from "./view-user/index-user/index-user.component";
+import {IndexHomeComponent} from "./view-user/index-home/index-home.component";
+import {GmailHomeComponent} from "./auth/gmail-home/gmail-home.component";
+import {ListUsuariosComponent} from "./usuarios/list-usuarios/list-usuarios.component";
+import {ListItinerariesComponent} from "./itinerario/list-itineraries/list-itineraries.component";
+import {ComprarComponent} from "./compra/comprar/comprar.component";
+import {SuccessComponent} from "./compra/success/success.component";
+import {PurchaseDbComponent} from "./compra/purchase-db/purchase-db.component";
+import {ListaComprasComponent} from "./compra/lista-compras/lista-compras.component";
+import {SearchVuelosComponent} from "./view-user/search-vuelos/search-vuelos.component";
 
 const routes: Routes = [
 
   {path: '', component: IndexComponent},
+
   {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
   {path: 'registro', component: RegistroComponent, canActivate: [LoginGuard]},
   {path: 'sendemail', component: SendEmailComponent, canActivate: [LoginGuard]},
   {path: 'change-password/:tokenPassword', component: ChangePasswordComponent, canActivate: [LoginGuard]},
+  { path: 'success', component: SuccessComponent },
+
   {
-    path: 'lista',
-    component: ListaProductoComponent,
-    canActivate: [ProdGuardService],
-    data: {expectedRol: ['admin', 'user']}
-  },
-  {
-    path: 'detalle/:id',
-    component: DetalleProductoComponent,
-    canActivate: [ProdGuardService],
-    data: {expectedRol: ['admin', 'user']}
-  },
-  {path: 'nuevo',
-    component: NuevoProductoComponent,
+    path: 'flights',
+    component: ListFlightComponent,
     canActivate: [ProdGuardService],
     data: {expectedRol: ['admin']}
   },
 
   {
-    path: 'editar/:id',
-    component: EditarProductoComponent,
+    path: 'view',
+    component: ViewFlightComponent,
+    canActivate: [ProdGuardService],
+    data: {expectedRol: ['admin']}
+  },
+
+  {
+    path: 'export-data',
+    component: ExportDataComponent,
+    canActivate: [ProdGuardService],
+    data: {expectedRol: ['admin']}
+  },
+  {
+    path: 'index-user',
+    component: IndexUserComponent,
+    canActivate: [ProdGuardService],
+    data: {expectedRol: ['user']}
+  },
+  {
+    path: 'index-home',
+    component: IndexHomeComponent,
+    canActivate: [ProdGuardService],
+    data: {expectedRol: ['user', 'admin']}
+  },
+
+  {
+    path: 'lista-compras',
+    component: ListaComprasComponent,
+    canActivate: [ProdGuardService],
+    data: {expectedRol: ['user','admin']}
+  },
+  {
+    path: 'pagar',
+    component: ComprarComponent,
+    canActivate: [ProdGuardService],
+    data: {expectedRol: ['user','admin']}
+  },
+  {
+    path: 'resultado-vuelos',
+    component: SearchVuelosComponent,
+    canActivate: [ProdGuardService],
+    data: {expectedRol: ['user','admin']}
+  },
+
+
+  {
+    path: 'list-users',
+    component: ListUsuariosComponent,
+    canActivate: [ProdGuardService],
+    data: {expectedRol: ['admin']}
+  },
+
+  {
+    path: 'list-itineraries',
+    component: ListItinerariesComponent,
     canActivate: [ProdGuardService],
     data: {expectedRol: ['admin']}
   },
 
 
-  /*----------------------------*/
 
-  {
-    path: 'list',
-    component: ListCategoriesComponent,
-    canActivate: [ProdGuardService],
-    data: {expectedRol: ['admin', 'user']}
-  },
-
-  {path: 'new',
-    component: CreateCategoryComponent,
-    canActivate: [ProdGuardService],
-    data: {expectedRol: ['admin', 'user']}
-  },
-  {
-    path: 'updated/:id',
-    component: UpdatedCategoryComponent,
-    canActivate: [ProdGuardService],
-    data: {expectedRol: ['admin','user']}
-  },
-  {
-    path: 'view/:id',
-    component: DetailComponent,
-    canActivate: [ProdGuardService],
-    data: {expectedRol: ['admin', 'user']}
-  },
 
   {path: '**', redirectTo: '', pathMatch: 'full'},
 

@@ -1,0 +1,14 @@
+/* styles.css (o tu archivo de estilos) */
+input[type="file"] {
+  /* Estilos para ocultar el texto original */
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+.selected-file {
+  /* Estilos para mostrar el nombre de la imagen */
+  color: #000;
+  margin-left: 10px;
+}
+
+
