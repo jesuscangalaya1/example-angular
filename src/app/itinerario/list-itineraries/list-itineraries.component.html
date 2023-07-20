@@ -1,3 +1,5 @@
+<app-loading *ngIf="loading"></app-loading>
+
 <mat-toolbar color="primary" class="mat-elevation-z8">
   <button (click)="drawer.toggle()" mat-icon-button>
     <mat-icon>menu</mat-icon>
@@ -95,45 +97,57 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
-  <mat-drawer-content>
+  <mat-drawer-content *ngIf="!loading">
     <div style="text-align: center;min-height: 500px; margin-left: 20px; margin-right: 20px; margin-top: 40px; ">
 
 
-      <div class="container">
-        <input (change)="selectedFile($event)" type="file">
-        <button (click)="uploadFile()" class="btn" mat-raised-button color="primary">Upload</button>
+      <div class="file-container">
+        <label for="fileInput" class="file-label">
+          <input (change)="selectedFile($event)" type="file" id="fileInput" #fileInput>
+          <span class="file-custom-input">Choose File</span>
+        </label>
+        <button (click)="uploadFile()" class="btn" mat-raised-button color="primary"
+                [disabled]="!fileInput.files || fileInput.files.length === 0">Upload
+        </button>
       </div>
 
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>departureDate</th>
-          <th>Username</th>
-          <th>arrivalDate</th>
-          <th>hour</th>
-          <th>origen</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let itinerary of itineraries">
-          <td>{{ itinerary.id }}</td>
-          <td>{{ itinerary.departureDate }}</td>
-          <td>{{ itinerary.arrivalDate }}</td>
-          <td>{{ itinerary.hour }}</td>
-          <td>{{ itinerary.origin.city }}</td>
-          <td>{{ itinerary.location.city }}</td>
-
-        </tr>
-        </tbody>
-      </table>
 
 
+      <div class="table-container">
 
+        <table class="custom-table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>departureDate</th>
+            <th>arrivalDate</th>
+            <th>hour</th>
+            <th>origen</th>
+            <th>destino</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let itinerary of itineraries">
+            <td>{{ itinerary.id }}</td>
+            <td>{{ itinerary.departureDate }}</td>
+            <td>{{ itinerary.arrivalDate }}</td>
+            <td>{{ itinerary.hour }}</td>
+            <td>{{ itinerary.origin.city }}</td>
+            <td>{{ itinerary.location.city }}</td>
 
+          </tr>
+          </tbody>
+        </table>
+      </div>
 
 
       <div class="paginator">
+
+        <!-- Botón o enlace para volver al principio -->
+        <button mat-icon-button (click)="goToFirstPage()" [disabled]="currentPage === 0">
+          <mat-icon>first_page</mat-icon>
+        </button>
+
         <mat-paginator
           [pageIndex]="currentPage"
           [pageSize]="pageSize"
@@ -141,18 +155,12 @@
           [length]="totalElements"
           (page)="onPageChange($event)"
         ></mat-paginator>
+
+        <!-- Botón o enlace para ir al último elemento -->
+        <button mat-icon-button (click)="goToLastPage()" [disabled]="currentPage === totalPages - 1 || lastPage">
+          <mat-icon>last_page</mat-icon>
+        </button>
       </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
     </div>

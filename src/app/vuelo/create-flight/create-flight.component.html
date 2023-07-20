@@ -1,3 +1,4 @@
+<!--
 <div class="create-flight">
   <h2>Create Flight</h2>
   <form (submit)="crearVuelo()">
@@ -33,3 +34,70 @@
     </div>
   </form>
 </div>
+-->
+
+
+
+<!-- dsddsad-->
+
+
+<app-loading *ngIf="loading"></app-loading>
+
+<mat-dialog-content *ngIf="!loading" >
+  <h2 mat-dialog-title class="title-style">Actualizar Vuelo</h2>
+
+  <form (submit)="crearVuelo()">
+    <div class="product-container">
+      <mat-form-field>
+        <input matInput placeholder="Capacidad" type="number" [(ngModel)]="capacidad" name="capacity" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Duración" [(ngModel)]="duracion" name="duration" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Precio" type="number" [(ngModel)]="precio" name="price" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Hora de Salida" [(ngModel)]="horaSalida" name="departureTime" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Itinerario" type="number" [(ngModel)]="itineraryId" name="itineraryId" required />
+      </mat-form-field>
+
+      <div>
+        <mat-label>Foto:</mat-label>
+        <label for="file-upload" class="subir">
+          Subir archivo
+        </label>
+
+        <input
+          id="file-upload"
+          accept="image/png, image/jpeg"
+          (change)="onFileSelected($event)"
+          type="file"
+          class="input-file"
+          name="file"
+        />
+        <span>{{ imagen ? imagen.name : '' }}</span>
+      </div>
+    </div>
+
+    <br>
+    <mat-dialog-actions>
+      <button type="submit" mat-button color="primary" [disabled]="!formularioValido()">
+        <mat-icon>save</mat-icon>Guardar
+      </button>
+      <button mat-button color="primary" (click)="cancel()">
+        <mat-icon>cancel</mat-icon>Cancelar
+      </button>
+
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>
+
+
+

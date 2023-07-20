@@ -5,6 +5,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {NgOneTapService} from "ng-google-one-tap";
+import {AlertService} from "../../services/alert/alert.service";
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,8 @@ export class LoginComponent implements OnInit {
   errMsj: string;
   hidePassword: boolean = true;
 
+  loading = false;
+
 
   constructor(
     private tokenService: TokenService,
@@ -27,7 +30,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private onetap: NgOneTapService,
-
+    private alertService: AlertService,
   ) {
   }
 
@@ -36,8 +39,8 @@ export class LoginComponent implements OnInit {
   }
 
 
-
   onLogin(): void {
+    this.loading = true;
     this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
     this.authService.login(this.loginUsuario).subscribe(
       data => {
@@ -46,24 +49,28 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/flights']); // Redirige al administrador
         } else {
           this.router.navigate(['/index-home']); // Redirige al usuario normal
-        }      },
+        }
+        this.alertService.notification('Inicio de sesión exitoso', 'success'); // Muestra una notificación de éxito
+        this.loading = false; // Restablece el estado de carga a false
+      },
       err => {
-        this.errMsj = err.error.mensaje;
-        this.toastr.error(this.errMsj, 'Fail', {
+        /*this.toastr.error(this.errMsj, 'Fail', {
           timeOut: 3000, positionClass: 'toast-top-center',
-        });
+        });*/
+        this.alertService.notification('Compruebe sus datos ... ', 'error'); // Muestra una notificación de error
+
+        this.loading = false; // Restablece el estado de carga a false
       }
     );
   }
+
 
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
 
 
-
   // GMAIL - AUTH ...
-
 
 
 }

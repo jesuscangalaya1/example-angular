@@ -9,7 +9,9 @@
         <th>Precio</th>
         <th>Total</th>
         <th>Hora del Vuelo</th>
-        <th>imag</th>
+        <th>Imagen</th>
+        <th>Exportar a PDF</th>
+        <th>Eliminar</th> <!-- Nuevo encabezado de columna -->
       </tr>
       </thead>
       <tbody>
@@ -19,7 +21,15 @@
         <td>{{ purchase.price }}</td>
         <td>{{ purchase.total }}</td>
         <td>{{ purchase.flights[0]?.departureTime }}</td>
-        <td><img [src]="purchase.flights[0]?.image" alt="Flight Image" style="width: 100px; height: auto;"></td>
+        <td>
+          <img [src]="purchase.flights[0]?.image" alt="Flight Image" style="width: 100px; height: auto;">
+        </td>
+        <td>
+          <button (click)="exportToPDF(purchase.id)">Exportar</button>
+        </td>
+        <td>
+          <button (click)="deletePurchase(purchase.id)">Eliminar</button> <!-- Botón de eliminar -->
+        </td>
       </tr>
       </tbody>
     </table>

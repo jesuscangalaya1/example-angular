@@ -14,10 +14,16 @@ export class IndexComponent implements OnInit {
   isAdmin = false;
   dropdownOpen: boolean = false;
 
+  loading = false;
 
-  constructor(private tokenService: TokenService) { }
+  constructor(private tokenService: TokenService,
+
+  ) { }
 
   ngOnInit() {
+
+
+
     this.isLogged = this.tokenService.isLogged();
     this.isAdmin = this.tokenService.isAdmin();
 

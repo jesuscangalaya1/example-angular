@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TokenService} from "../../services/token.service";
 import {FlightService} from "../../services/flight.service";
 import {ItineraryService} from "../../services/itinerary.service";
+import {AlertService} from "../../services/alert/alert.service";
 
 @Component({
   selector: 'app-create-flight',
@@ -22,10 +23,13 @@ export class CreateFlightComponent implements OnInit{
 
   isAdmin = false;
 
+  loading = false;
+
   constructor(private router: Router,
               private service: FlightService,
               private itineraryService: ItineraryService,
               private snackBar: MatSnackBar,
+              private alertService: AlertService,
               public dialogRef: MatDialogRef<CreateFlightComponent>,
               private tokenService: TokenService,
               @Inject(MAT_DIALOG_DATA) public data: any
@@ -46,18 +50,28 @@ export class CreateFlightComponent implements OnInit{
     formData.append('file', this.imagen);
     formData.append('itineraryId', this.itineraryId.toString()); // Agrega el itineraryId al FormData
 
+    this.loading = true;
+
     this.service.createFlight(formData).subscribe(
       response => {
         console.log('Vuelo creado:', response);
         if (response.status === 'SUCCESS') {
-          this.snackBar.open('Vuelo SUCCESSFULLY CREATED', '', { duration: 2000 });
-          this.dialogRef.close('success');
+
+          this.alertService.notification('Creado !', 'success'); // Muestra una notificación de éxito
+          this.dialogRef.close(3);
+
+          this.loading = false; // Restablece el estado de carga a false
+
         } else {
           console.error('Error creating Vuelo:', response.message);
+          this.alertService.notification('Error ! ', 'error'); // Muestra una notificación de error
+
+          this.loading = false; // Restablece el estado de carga a false
         }
       },
       (error) => {
         console.log('Error creating Vuelo:', error);
+        this.loading = false; // Restablece el estado de carga a false
       }
     );
   }

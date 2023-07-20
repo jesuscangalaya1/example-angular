@@ -86,3 +86,198 @@
 
 
 
+// CSS --------------------------------------------------------------------
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+
+}
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+custom-table th,
+.custom-table td {
+  padding: 20px 20px; /* Ajustar el espacio vertical */
+  text-align: center; /* Centrar el texto */
+  border-bottom: 1px solid #ddd; /* Se ha cambiado el grosor a 2px */
+  transition: background-color 1s ease;
+}
+
+.custom-table th {
+  padding: 20px 20px; /* Ajustar el espacio vertical */
+
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.custom-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.custom-table tr {
+  transition: background-color 0.3s ease;
+}
+
+.custom-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+.custom-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.custom-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.delete-button:focus {
+  outline: none;
+}
+
+.delete-button:hover {
+  transform: scale(1.1);
+}
+
+.delete-icon {
+  color: #f44336;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.delete-button:hover .delete-icon {
+  color: #d32f2f;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.custom-table tbody tr:hover td {
+  background-color: #eef1f6;
+}
+
+.custom-table tbody td:first-child {
+  border-left: 1px solid #ddd;
+}
+
+.custom-table tbody td:last-child {
+  border-right: 1px solid #ddd;
+}
+
+@media screen and (max-width: 767px) {
+  .table-container {
+    overflow-x: scroll;
+  }
+  .custom-table {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+  .custom-table th {
+    font-weight: 600;
+    color: #333;
+  }
+  .custom-table td:before {
+    font-weight: bold;
+    top: 4px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .custom-table th,
+  .custom-table td {
+    padding: 6px;
+    font-size: 12px;
+  }
+  .custom-table td:before {
+    top: 2px;
+  }
+}
+
+
+
+// SWEET ALER -------------------------------
+/* Estilos para el peligro */
+.swal2-confirm.custom-confirm-button:hover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background-color: #c0392b;
+  opacity: 0.6;
+  animation: dangerAnimation 1s infinite alternate;
+}
+
+@keyframes dangerAnimation {
+  from {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.swal2-cancel.custom-cancel-button:hover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background-color: #1a5276;
+  opacity: 0.6;
+  animation: dangerAnimation 1s infinite alternate;
+}
+
+
+
+// buton export
+
+
+.boton {
+}
+
+button {
+  top: -10px; /* Ajusta este valor negativo para subir el botón */
+  left: 10px; /* Ajusta este valor para mover el botón a la izquierda */
+}
+
+
+
+
+
+

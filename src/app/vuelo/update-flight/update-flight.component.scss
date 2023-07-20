@@ -1,14 +1,29 @@
-/* styles.css (o tu archivo de estilos) */
-input[type="file"] {
-  /* Estilos para ocultar el texto original */
-  color: transparent;
-  text-shadow: 0 0 0 #000;
+.product-container{
+  display: flex;
+  flex-direction: column;
 }
 
-.selected-file {
-  /* Estilos para mostrar el nombre de la imagen */
-  color: #000;
-  margin-left: 10px;
+.product-container > * {
+  width: 100%;
 }
+.title-style {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+
+.input-file{
+  display: none;
+}
+
+.subir{
+  padding: 5px 16px;
+  background: #3f51b5;
+  color: #fff;
+  border: 0px solid #fff;
+}
+
 
 

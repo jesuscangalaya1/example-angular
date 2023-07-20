@@ -1,0 +1,45 @@
+
+<app-loading *ngIf="loading"></app-loading>
+
+<mat-dialog-content *ngIf="!loading">
+  <h2 mat-dialog-title class="title-style">Exportar Datos</h2>
+
+  <div class="product-container">
+    <mat-form-field>
+      <mat-label>Formato:</mat-label>
+      <mat-select [(ngModel)]="format">
+        <mat-option value="excel">EXCEL</mat-option>
+        <mat-option value="pdf">PDF</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Precio Mínimo:</mat-label>
+      <input matInput type="number" [(ngModel)]="priceMin" name="priceMin"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Precio Máximo:</mat-label>
+      <input matInput type="number" [(ngModel)]="priceMax" name="priceMax"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Número de Página:</mat-label>
+      <input matInput type="number" [(ngModel)]="pageNo" name="pageNo" required/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Tamaño de Página:</mat-label>
+      <input matInput type="number" [(ngModel)]="pageSize" name="pageSize" required/>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="exportData()">Exportar</button>
+
+
+  </mat-dialog-actions>
+
+
+</mat-dialog-content>
+

@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 
-
-<div class="container d-flex justify-content-center">
+<app-loading *ngIf="loading"></app-loading>
+<div class="container d-flex justify-content-center" *ngIf="!loading">
   <div class="card">
     <div class="card-header">
       <h2 class="text-center">Recuperar Contraseña</h2>

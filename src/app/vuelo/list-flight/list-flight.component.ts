@@ -16,9 +16,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateFlightComponent} from "../create-flight/create-flight.component";
 import {DetailFlightComponent} from "../detail-flight/detail-flight.component";
-import {environment} from "../../../environments/environment";
 import {UpdateFlightComponent} from "../update-flight/update-flight.component";
 import * as events from "events";
+import {AlertService} from "../../services/alert/alert.service";
+import Swal, {SweetAlertOptions} from "sweetalert2";
 
 @Component({
   selector: 'app-list-flight',
@@ -37,7 +38,7 @@ export class ListFlightComponent implements OnInit {
 
   dataSource: MatTableDataSource<FlightDto>;
   displayedColumns: string[] = ['id', 'capacity', 'duration', 'price', 'departureTime','image','detail', 'update','deleted'];
-  pageSize = 5;
+  pageSize = 3;
   pageSizeOptions: number[] = [5, 10, 25];
   totalElements = 0; // Inicializar en 0
   totalPages: number;
@@ -49,16 +50,19 @@ export class ListFlightComponent implements OnInit {
   isInputsValid = false; // Agrega una variable para controlar la validez de los inputs
 
 
+  currentPage = 1;
 
   isLogged = false;
   isAdmin = false;
   flightUpdated: EventEmitter<any> = new EventEmitter<any>();
 
+  loading = false;
 
   constructor(
     private locationService: LocationService,
     private flightService: FlightService,
     private datePipe: DatePipe,
+    private alertService: AlertService,
     private tokenService: TokenService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
@@ -112,6 +116,9 @@ export class ListFlightComponent implements OnInit {
       // Por ejemplo, puedes actualizar la lista de productos si se creó uno nuevo
       if (result === 'success') {
         this.loadFlights();
+      }else {
+        this.loadFlights()
+
       }
     });
   }
@@ -126,8 +133,10 @@ export class ListFlightComponent implements OnInit {
       if (result === 'success') {
         this.snackBar.open('Vuelo actualizado', 'Éxito');
         this.flightUpdated.emit(); // Emitir el evento de Vuelo actualizado
+        this.loadFlights()
       } else {
-        this.snackBar.open('Se produjo un error al actualizar el Vuelo', 'Error');
+        this.loadFlights()
+
       }
     });
   }
@@ -140,58 +149,132 @@ export class ListFlightComponent implements OnInit {
   }
 
   deleteFlight(id: number){
-    this.flightService.deleteFlight(id)
-      .pipe(
-        tap(() => {
-          console.log('Vuelo deleted successfully!');
-          this.snackBar.open('Vuelo eliminada exitosamente', 'Cerrar', {
-            duration: 3000,
-            panelClass: 'success-snackbar'
-          });
-        }),
-        catchError(error => {
-          console.log(error);
-          this.snackBar.open('Error al eliminar el Vuelo', 'Cerrar', {
-            duration: 3000,
-            panelClass: 'error-snackbar'
-          });
-          return throwError(error);
-        })
-      )
-      .subscribe(() => {
-        this.loadFlights();
-      });
+    const customSwalClass: SweetAlertOptions['customClass'] = {
+      container: 'custom-swal-container',
+      title: 'custom-swal-title',
+      confirmButton: 'btn btn-confirmation custom-confirm-button', // Añadir la clase personalizada aquí
+      cancelButton: 'swal2-cancel custom-cancel-button', // Añade las clases personalizadas aquí
+    };
+
+    Swal.fire({
+      title: 'Confirmación',
+      html: '¿Estás seguro de que quieres eliminar este usuario?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#e74c3c',
+      cancelButtonColor: '#2980b9',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      customClass: customSwalClass,
+      buttonsStyling: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.flightService.deleteFlight(id)
+          .subscribe(
+            () => {
+              console.log('User deleted successfully!');
+
+              this.alertService.notification('Vuelo eliminado!', 'success'); // Muestra una notificación de éxito
+              this.loading = false; // Establece el estado de carga a true
+              this.loadFlights()
+
+
+            },
+            (error) => {
+              console.log(error);
+              this.alertService.notification('Error al eliminar el vuelo', 'error'); // Muestra una notificación de error
+              this.loading = false; // Restablece el estado de carga a false en caso de error
+            }
+          );
+      }
+    });
   }
 
 
-
+  onPageChangeTrue(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadFlights();
+  }
 
   loadFlights() {
-    this.flightService.getAllFlights().subscribe(
+    const pageNo = this.currentPage; // Obtener el número de página actual
+    this.loading = true;
+
+    this.flightService.getAllFlights(pageNo, this.pageSize).subscribe(
       response => {
         console.log(response);
         if (response.status === 'SUCCESS' && response.data && Array.isArray(response.data.content)) {
-          this.flights = response.data.content.filter((flights) => !flights.deleted);
+          this.flights = response.data.content;
           this.totalElements = response.data.totalElements;
           this.totalPages = response.data.totalPages;
           this.lastPage = response.data.last;
 
-          this.dataSource = new MatTableDataSource<FlightDto>(this.flights);
-          this.dataSource.paginator = this.paginator; // Asignar el paginador
+
+          this.dataSource = new MatTableDataSource(this.flights);
+
+          //this.dataSource = new MatTableDataSource<FlightDto>(this.flights);
+          //this.dataSource.paginator = this.paginator; // Asignar el paginador
+
 
           // Establecer la página inicial como la primera
           this.dataSource.paginator?.firstPage();
+
+          this.loading = false; // Restablece el estado de carga a false
+
         } else {
           console.error('Error: Respuesta inválida del servicio');
+          this.loading = false; // Restablece el estado de carga a false
+
         }
-        },
+      },
       error => {
         console.error(error);
+        this.loading = false; // Restablece el estado de carga a false
+
       }
     );
   }
 
+  goToFirstPage() {
+    this.currentPage = 0;
+    this.onPageChangeFlights({ pageIndex: this.currentPage, pageSize: this.pageSize, length: this.totalElements });
+  }
+
+
+  goToLastPage() {
+    this.currentPage = this.totalPages - 1;
+    this.onPageChangeFlights({ pageIndex: this.currentPage, pageSize: this.pageSize, length: this.totalElements });
+  }
+
+  onPageChangeFlights(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadFlights();
+  }
+
+
+
+  /*
+    updateDataSource() {
+      const startIndex = this.currentPage * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      this.dataSource = new MatTableDataSource<FlightDto>(this.flights.slice(startIndex, endIndex));
+    }*/
+
+  onPage(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.dataSource.data = this.flights.slice(startIndex, endIndex);
+  }
+
+
+
+
   filterFlights() {
+    this.loading = true; // Restablece el estado de carga a false
+
     this.flightService.getAllFlights(undefined, undefined, this.priceMin, this.priceMax).subscribe(
       response => {
         console.log(response);
@@ -200,18 +283,36 @@ export class ListFlightComponent implements OnInit {
           this.totalElements = response.data.totalElements;
           this.totalPages = response.data.totalPages;
           this.lastPage = response.data.last;
+/*
 
           this.dataSource = new MatTableDataSource<FlightDto>(this.flights);
           this.dataSource.paginator = this.paginator; // Asignar el paginador
 
           // Establecer la página inicial como la primera
           this.dataSource.paginator?.firstPage();
+*/
+
+          this.dataSource = new MatTableDataSource(this.flights);
+
+          //this.dataSource = new MatTableDataSource<FlightDto>(this.flights);
+          //this.dataSource.paginator = this.paginator; // Asignar el paginador
+
+
+          // Establecer la página inicial como la primera
+          this.dataSource.paginator?.firstPage();
+
+          this.alertService.notification('Precios Encontrados !', 'success'); // Muestra una notificación de éxito
+
+          this.loading = false; // Restablece el estado de carga a false
+
         } else {
           console.error('Error: Respuesta inválida del servicio');
         }
-        },
+      },
       error => {
         console.error(error);
+        this.loading = false; // Restablece el estado de carga a false
+
       }
     );
   }

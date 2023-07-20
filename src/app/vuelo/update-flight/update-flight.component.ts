@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FlightService} from "../../services/flight.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {environment} from "../../../environments/environment";
+import {AlertService} from "../../services/alert/alert.service";
 
 @Component({
   selector: 'app-update-flight',
@@ -27,11 +28,14 @@ export class UpdateFlightComponent implements OnInit{
 
   flightImageURL: string;
 
+  loading = false;
+
   constructor(
     private service: FlightService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
+    private alertService: AlertService,
     private dialogRef: MatDialogRef<UpdateFlightComponent>,
     @Inject(MAT_DIALOG_DATA)private data: any
 
@@ -41,13 +45,9 @@ export class UpdateFlightComponent implements OnInit{
 
   ngOnInit() {
     this.loadFlight()
-    //this.flightImageURL = this.getFlightImageURL(this.id);
 
   }
 
-  getFlightImageURL(flightId: number): string {
-    return `${this.url}flights/image/${flightId}`;
-  }
 
   updateFlight(): void {
     const formData = new FormData();
@@ -58,23 +58,37 @@ export class UpdateFlightComponent implements OnInit{
     formData.append('file', this.imagen);
     formData.append('itineraryId', this.itineraryId.toString()); // Agrega el itineraryId al FormData
 
+    this.loading = true;
+
     this.service.updateFlight(this.id,formData).subscribe(
       (response: any) => {
         console.log('Vuelo actualizado:', response);
         if (response.status === 'SUCCESS') {
-          this.snackBar.open('Vuelo SUCCESSFULLY CREATED', '', { duration: 1000 });
-          this.dialogRef.close('success');
+
+          this.alertService.notification('Actualizado !', 'success'); // Muestra una notificación de éxito
+          this.dialogRef.close(3);
+
+          this.loading = false; // Restablece el estado de carga a false
+
+
         } else {
           console.error('Error updated Vuelo:', response.message);
+          this.alertService.notification('Error ! ', 'error'); // Muestra una notificación de error
+
+          this.loading = false; // Restablece el estado de carga a false
         }
       },
       (error) => {
         console.log('Error updated Vuelo:', error);
+        this.loading = false; // Restablece el estado de carga a false
+
       }
     );
   }
 
   private loadFlight(): void {
+    this.loading = true;
+
     this.service.getFlightById(this.id).subscribe(
       (response: any) => {
         console.log('Response:', response);
@@ -87,12 +101,18 @@ export class UpdateFlightComponent implements OnInit{
           this.itineraryId = flight.itineraryId;
           this.flightImageURL = flight.image; // Asigna el nombre de la imagen existente
 
+          this.loading = false;
+
         } else {
           console.error('Error cargando Vuelo:', response && response.message);
+          this.loading = false;
+
         }
       },
       (error) => {
         console.log('Error cargando Vuelo:', error);
+        this.loading = false;
+
       }
     );
   }
@@ -100,14 +120,14 @@ export class UpdateFlightComponent implements OnInit{
 
 
   cancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(3);
   }
 
 // update-flight.component.ts
   onFileSelected(event: any): void {
     if (event.target.files && event.target.files.length > 0) {
       this.imagen = event.target.files[0];
-      this.flightImageURL = this.imagen.name;
+      this.flightImageURL = this.imagen;
     } else {
       this.flightImageURL = ''; // Establecer flightImageURL como una cadena vacía cuando no se selecciona un archivo
     }

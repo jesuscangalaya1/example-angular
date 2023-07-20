@@ -115,18 +115,25 @@ export class SearchVuelosComponent implements OnInit {
     });
   }
 
+  currentPage = 1;
   loadFlights() {
-    this.flightService.getAllFlights(1).subscribe(
+    const pageNo = this.currentPage; // Obtener el número de página actual
+
+    this.flightService.getAllFlights(pageNo, this.pageSize).subscribe(
       response => {
         console.log(response);
         if (response.status === 'SUCCESS' && response.data && Array.isArray(response.data.content)) {
-          this.flights = response.data.content.filter((flights) => !flights.deleted);
+          this.flights = response.data.content;
           this.totalElements = response.data.totalElements;
           this.totalPages = response.data.totalPages;
           this.lastPage = response.data.last;
 
-          this.dataSource = new MatTableDataSource<FlightDto>(this.flights);
-          this.dataSource.paginator = this.paginator; // Asignar el paginador
+
+          this.dataSource = new MatTableDataSource(this.flights);
+
+          //this.dataSource = new MatTableDataSource<FlightDto>(this.flights);
+          //this.dataSource.paginator = this.paginator; // Asignar el paginador
+
 
           // Establecer la página inicial como la primera
           this.dataSource.paginator?.firstPage();
@@ -140,6 +147,12 @@ export class SearchVuelosComponent implements OnInit {
     );
   }
 
+
+  onPageChangeFlights(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadFlights();
+  }
   filterFlights() {
     this.flightService.getAllFlights(undefined, undefined, this.priceMin, this.priceMax).subscribe(
       response => {

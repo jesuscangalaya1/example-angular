@@ -26,7 +26,7 @@ export class IndexHomeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: MatTableDataSource<FlightDto>;
-  pageSize = 6;
+  pageSize = 5;
   pageSizeOptions: number[] = [6, 12];
   totalElements = 0; // Inicializar en 0
   totalPages: number;
@@ -118,18 +118,25 @@ export class IndexHomeComponent implements OnInit {
   }
 
 
+  currentPage = 1;
   loadFlights() {
-    this.flightService.getAllFlights().subscribe(
+    const pageNo = this.currentPage; // Obtener el número de página actual
+
+    this.flightService.getAllFlights(pageNo, this.pageSize).subscribe(
       response => {
         console.log(response);
         if (response.status === 'SUCCESS' && response.data && Array.isArray(response.data.content)) {
-          this.flights = response.data.content.filter((flights) => !flights.deleted);
+          this.flights = response.data.content;
           this.totalElements = response.data.totalElements;
           this.totalPages = response.data.totalPages;
           this.lastPage = response.data.last;
 
-          this.dataSource = new MatTableDataSource<FlightDto>(this.flights);
-          this.dataSource.paginator = this.paginator; // Asignar el paginador
+
+          this.dataSource = new MatTableDataSource(this.flights);
+
+          //this.dataSource = new MatTableDataSource<FlightDto>(this.flights);
+          //this.dataSource.paginator = this.paginator; // Asignar el paginador
+
 
           // Establecer la página inicial como la primera
           this.dataSource.paginator?.firstPage();
@@ -141,6 +148,13 @@ export class IndexHomeComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+
+  onPageChangeFlights(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadFlights();
   }
 
   onPageChange(event: PageEvent) {

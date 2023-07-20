@@ -7,6 +7,7 @@ import {TokenService} from "../../services/token.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Itinerary} from "../../models/itinerary";
 import {ItineraryService} from "../../services/itinerary.service";
+import {AlertService} from "../../services/alert/alert.service";
 
 @Component({
   selector: 'app-list-itineraries',
@@ -35,11 +36,12 @@ export class ListItinerariesComponent implements OnInit {
   isAdmin = false;
 
   file: any;
+  loading = false;
 
 
   constructor(private service: ItineraryService,
               private tokenService: TokenService,
-              private snackBar: MatSnackBar,
+              private alertService: AlertService,
   ) {
   }
 
@@ -53,6 +55,8 @@ export class ListItinerariesComponent implements OnInit {
 
   listItineraries() {
     const pageNo = this.currentPage; // Obtener el número de página actual
+    this.loading = true;
+
     this.service.listItineraries(pageNo, this.pageSize)
       .subscribe(response => {
         console.log("data :: ", response)
@@ -66,6 +70,9 @@ export class ListItinerariesComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.itineraries);
         // Establecer la página inicial como la primera
         this.dataSource.paginator?.firstPage();
+
+        this.loading = false;
+
       });
   }
 
@@ -76,14 +83,23 @@ export class ListItinerariesComponent implements OnInit {
   }
 
   uploadFile() {
+    this.loading = true;
+
     this.service.importExcel(this.file).subscribe(
       (data) => {
         console.log(data);
-        alert(data.message);
+
+        this.alertService.notification('Datos importados !', 'success'); // Muestra una notificación de éxito
         this.listItineraries();
+        this.loading = false;
+
       },
       (error) => {
         console.log(error);
+        this.alertService.notification('Error !', 'error'); // Muestra una notificación de éxito
+
+        this.loading = false;
+
       }
     );
   }
@@ -114,6 +130,18 @@ export class ListItinerariesComponent implements OnInit {
       this.currentPage++;
       this.listItineraries();
     }
+  }
+
+
+  goToFirstPage() {
+    this.currentPage = 0;
+    this.onPageChange({ pageIndex: this.currentPage, pageSize: this.pageSize, length: this.totalElements });
+  }
+
+
+  goToLastPage() {
+    this.currentPage = this.totalPages - 1;
+    this.onPageChange({ pageIndex: this.currentPage, pageSize: this.pageSize, length: this.totalElements });
   }
 
   onPageChange(event: PageEvent) {

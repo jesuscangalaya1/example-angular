@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {PurchaseResponse} from "../models/purchase-response";
 import {Observable} from "rxjs";
 import {PurchaseRequest} from "../models/purchase-request";
-import {Mensaje} from "../models/mensaje";
 import {TokenService} from "./token.service";
 
 @Injectable({
@@ -14,8 +12,23 @@ export class PurchaseService {
 
   url = environment.URL;
 
+
   constructor(private http: HttpClient,
               private tokenService: TokenService) {}
+
+
+  exportInvoice(id: number): Observable<any> {
+    const url = `${this.url}purchases/exportInvoice/${id}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
+
+  deletePurchase(id: number): Observable<any> {
+    const url = `${this.url}purchases/${id}`;
+    return this.http.delete(url);
+  }
+
+
 
   public listCustomerPurchases(): Observable<any> {
     const token = this.tokenService.getToken();

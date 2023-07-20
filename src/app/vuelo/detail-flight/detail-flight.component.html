@@ -1,4 +1,4 @@
-<h2>Detalles de la vuelos</h2>
+<!--<h2>Detalles de la vuelos</h2>
 <div *ngIf="flightDto">
 
   <p><strong>ID:</strong> {{ flightDto.id }}</p>
@@ -7,4 +7,47 @@
   <p><strong>duration:</strong> {{ flightDto.duration}}</p>
   <p><strong>departureTime:</strong> {{ flightDto.departureTime }}</p>
 
-</div>
+</div>-->
+
+
+
+<app-loading *ngIf="loading"></app-loading>
+
+<mat-dialog-content *ngIf="!loading" >
+  <h2 mat-dialog-title class="title-style">Detalle del Vuelo</h2>
+
+  <div class="product-container" >
+    <mat-form-field>
+      <mat-label>Capacidad:</mat-label>
+      <input matInput placeholder="Capacidad" type="number" [(ngModel)]="flightDto.capacity" name="capacity" readonly />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Duración:</mat-label>
+      <input matInput placeholder="Duración" [(ngModel)]="flightDto.duration" name="duration" readonly />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Precio:</mat-label>
+      <input matInput placeholder="Precio" type="number" [(ngModel)]="flightDto.price" name="price" readonly />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Hora de Salida:</mat-label>
+      <input matInput placeholder="Hora de Salida" [(ngModel)]="flightDto.departureTime" name="departureTime" readonly />
+    </mat-form-field>
+
+    <div>
+      <mat-label>Foto:</mat-label>
+      <img [src]="flightDto.image" alt="Imagen del vuelo" class="flight-image" />
+    </div>
+  </div>
+
+  <br>
+  <mat-dialog-actions>
+    <button mat-button color="primary" (click)="cancel()">
+      <mat-icon>cancel</mat-icon>Volver
+    </button>
+  </mat-dialog-actions>
+</mat-dialog-content>
+

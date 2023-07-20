@@ -91,9 +91,13 @@
         </div>
 
         <div class="paginator">
-          <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [length]="totalElements"
-                         (page)="onPageChange($event)">
-          </mat-paginator>
+          <mat-paginator
+            [pageIndex]="currentPage"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            [length]="totalElements"
+            (page)="onPageChangeFlights($event)"
+          ></mat-paginator>
         </div>
 
       </div>

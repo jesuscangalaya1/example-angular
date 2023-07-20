@@ -80,6 +80,9 @@ import { SuccessComponent } from './compra/success/success.component';
 import { PurchaseDbComponent } from './compra/purchase-db/purchase-db.component';
 import { ListaComprasComponent } from './compra/lista-compras/lista-compras.component';
 import { SearchVuelosComponent } from './view-user/search-vuelos/search-vuelos.component';
+import { ExportDialogComponent } from './exports/export-dialog/export-dialog.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
@@ -130,6 +133,8 @@ import { SearchVuelosComponent } from './view-user/search-vuelos/search-vuelos.c
     PurchaseDbComponent,
     ListaComprasComponent,
     SearchVuelosComponent,
+    ExportDialogComponent,
+    LoadingComponent,
 
 
   ],
@@ -172,14 +177,15 @@ import { SearchVuelosComponent } from './view-user/search-vuelos/search-vuelos.c
         NgxBraintreeModule,
         MatPaginatorModule,
         NgGoogleOneTapModule.config(
-        {  //Look options table for some more avaialbe options and config here.
-          client_id: environment.clientId,
-          cancel_on_tap_outside: false,
-          authvalidate_by_googleapis: false,
-          auto_select: false,
-          disable_exponential_cooldowntime: false,
-          context: 'signup'
-        })
+            {  //Look options table for some more avaialbe options and config here.
+                client_id: environment.clientId,
+                cancel_on_tap_outside: false,
+                authvalidate_by_googleapis: false,
+                auto_select: false,
+                disable_exponential_cooldowntime: false,
+                context: 'signup'
+            }),
+        MatProgressSpinnerModule
 
 
     ],
