@@ -1,3 +1,4 @@
+<!--
 <div class="container">
   <h2>Lista de Compras</h2>
   <div *ngIf="purchases && purchases.length > 0">
@@ -8,10 +9,9 @@
         <th>Cantidad</th>
         <th>Precio</th>
         <th>Total</th>
-        <th>Hora del Vuelo</th>
         <th>Imagen</th>
-        <th>Exportar a PDF</th>
-        <th>Eliminar</th> <!-- Nuevo encabezado de columna -->
+        <th>Ver Boleto</th>
+        <th>Deleted</th> &lt;!&ndash; Nuevo encabezado de columna &ndash;&gt;
       </tr>
       </thead>
       <tbody>
@@ -20,7 +20,9 @@
         <td>{{ purchase.amount }}</td>
         <td>{{ purchase.price }}</td>
         <td>{{ purchase.total }}</td>
+&lt;!&ndash;
         <td>{{ purchase.flights[0]?.departureTime }}</td>
+&ndash;&gt;
         <td>
           <img [src]="purchase.flights[0]?.image" alt="Flight Image" style="width: 100px; height: auto;">
         </td>
@@ -28,7 +30,7 @@
           <button (click)="exportToPDF(purchase.id)">Exportar</button>
         </td>
         <td>
-          <button (click)="deletePurchase(purchase.id)">Eliminar</button> <!-- Botón de eliminar -->
+          <button (click)="deletePurchase(purchase.id)">Eliminar</button> &lt;!&ndash; Botón de eliminar &ndash;&gt;
         </td>
       </tr>
       </tbody>
@@ -39,5 +41,56 @@
   </div>
   <div *ngIf="!purchases">
     <p>Cargando compras...</p>
+  </div>
+</div>
+-->
+
+<app-loading *ngIf="loading"></app-loading>
+
+
+<div class="background-container" *ngIf="!loading">
+  <div class="container">
+    <h2>Lista de Compras</h2>
+    <div *ngIf="purchases && purchases.length > 0">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+          <th>Hora del Vuelo</th>
+          <th>Imagen</th>
+          <th>Exportar a PDF</th>
+          <th>Eliminar</th> <!-- Nuevo encabezado de columna -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let purchase of purchases">
+          <td>{{ purchase.id }}</td>
+          <td>{{ purchase.amount }}</td>
+          <td>{{ purchase.price }}</td>
+          <td>{{ purchase.total }}</td>
+          <td>{{ purchase.flights[0]?.departureTime }}</td>
+          <td>
+            <img [src]="purchase.flights[0]?.image" alt="Flight Image" style="width: 100px; height: auto;">
+          </td>
+          <td>
+            <button (click)="exportToPDF(purchase.id)">Exportar Boleto</button>
+          </td>
+          <td>
+            <button (click)="deletePurchase(purchase.id)">Eliminar</button> <!-- Botón de eliminar -->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="purchases && purchases.length === 0">
+      <p>No hay compras disponibles.</p>
+    </div>
+    <div *ngIf="!purchases">
+      <p>Cargando compras...</p>
+    </div>
+    <a href="/index-home" class="back-button">Regresar al Inicio</a>
   </div>
 </div>

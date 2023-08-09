@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center">
+<!--<div class="container d-flex justify-content-center">
   <form>
     <div class="mb-3">
       <label  class="form-label">Introducir Importe</label>
@@ -15,4 +15,33 @@
     (paymentStatus)="onPaymentStatus($event)"
     [buttonText]="'Enviar'">
   </ngx-braintree>
-</div>
+</div>-->
+
+
+
+
+<app-loading *ngIf="loading"></app-loading>
+
+<section class=payment *ngIf="!loading">
+
+  <div class="container">
+    <div class="payment-form">
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Introducir Importe</label>
+          <input type="number" class="form-control" id="amount" name="amount" [(ngModel)]="amount">
+        </div>
+      </form>
+      <div *ngIf="amount > 0">
+        <ngx-braintree
+          [getClientToken]="getClientToken.bind(this)"
+          [createPurchase]="checkout.bind(this)"
+          [chargeAmount]="amount"
+          (paymentStatus)="onPaymentStatus($event)"
+          [buttonText]="'Enviar'">
+        </ngx-braintree>
+      </div>
+    </div>
+  </div>
+</section>
+

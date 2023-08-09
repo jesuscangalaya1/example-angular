@@ -4,7 +4,7 @@
   <button (click)="drawer.toggle()" mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Material UI Tutorial</span>
+  <span>PACIFIC ADVENTURES</span>
   <span class="example-spacer"></span>
   <button routerLink="" mat-button>Home</button>
   <button [matMenuTriggerFor]="lvl1master" mat-button>Master</button>
@@ -59,7 +59,7 @@
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button routerLink="" mat-button>
+        <button mat-button>
           <mat-icon>home</mat-icon>
           Home
         </button>
@@ -67,14 +67,14 @@
       <mat-list-item>
         <button routerLink="/list-itineraries" mat-button>
           <mat-icon>explore</mat-icon>
-          itineraries
+          Itinerarios
         </button>
 
       </mat-list-item>
       <mat-list-item>
         <button routerLink="/flights" mat-button>
           <mat-icon>table</mat-icon>
-          Flights
+          Vuelos
         </button>
       </mat-list-item>
       <mat-list-item>
@@ -86,7 +86,7 @@
       <mat-list-item>
         <button routerLink="/list-users" mat-button>
           <mat-icon>help</mat-icon>
-          Users
+          Usuarios
         </button>
       </mat-list-item>
       <mat-list-item>
@@ -107,7 +107,7 @@
           <span class="file-custom-input">Choose File</span>
         </label>
         <button (click)="uploadFile()" class="btn" mat-raised-button color="primary"
-                [disabled]="!fileInput.files || fileInput.files.length === 0">Upload
+                [disabled]="!fileInput.files || fileInput.files.length === 0">Import
         </button>
       </div>
 
@@ -119,11 +119,12 @@
           <thead>
           <tr>
             <th>ID</th>
-            <th>departureDate</th>
-            <th>arrivalDate</th>
-            <th>hour</th>
-            <th>origen</th>
-            <th>destino</th>
+            <th>Fecha de salida</th>
+            <th>Fecha de llegada</th>
+            <th>Hora</th>
+            <th>Origen</th>
+            <th>Destino</th>
+
           </tr>
           </thead>
           <tbody>

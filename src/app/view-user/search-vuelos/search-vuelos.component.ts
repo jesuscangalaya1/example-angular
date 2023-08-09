@@ -15,7 +15,7 @@ import {TokenService} from "../../services/token.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {FormControl} from "@angular/forms";
-import {HttpHeaders} from "@angular/common/http";
+import {AlertService} from "../../services/alert/alert.service";
 
 @Component({
   selector: 'app-search-vuelos',
@@ -26,7 +26,7 @@ export class SearchVuelosComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: MatTableDataSource<FlightDto>;
-  pageSize = 5;
+  pageSize = 4;
   pageSizeOptions: number[] = [5, 10,15];
   totalElements = 0; // Inicializar en 0
   totalPages: number;
@@ -51,6 +51,8 @@ export class SearchVuelosComponent implements OnInit {
   isLogged = false;
   isAdmin = false;
 
+  loading = false;
+
   constructor(private locationService: LocationService,
               private flightService: FlightService,
               private datePipe: DatePipe,
@@ -59,6 +61,8 @@ export class SearchVuelosComponent implements OnInit {
               private dialog: MatDialog,
               private router: Router,
               private route: ActivatedRoute,
+              private alertService: AlertService,
+
   ) {
 
     this.fechaIdaControl.valueChanges.subscribe(date => {
@@ -117,6 +121,8 @@ export class SearchVuelosComponent implements OnInit {
 
   currentPage = 1;
   loadFlights() {
+    this.loading = true;
+
     const pageNo = this.currentPage; // Obtener el número de página actual
 
     this.flightService.getAllFlights(pageNo, this.pageSize).subscribe(
@@ -137,12 +143,19 @@ export class SearchVuelosComponent implements OnInit {
 
           // Establecer la página inicial como la primera
           this.dataSource.paginator?.firstPage();
+
+          this.loading = false;
+
         } else {
           console.error('Error: Respuesta inválida del servicio');
+          this.loading = false;
+
         }
       },
       error => {
         console.error(error);
+        this.loading = false;
+
       }
     );
   }
@@ -154,6 +167,8 @@ export class SearchVuelosComponent implements OnInit {
     this.loadFlights();
   }
   filterFlights() {
+    this.loading = true;
+
     this.flightService.getAllFlights(undefined, undefined, this.priceMin, this.priceMax).subscribe(
       response => {
         console.log(response);
@@ -168,12 +183,19 @@ export class SearchVuelosComponent implements OnInit {
 
           // Establecer la página inicial como la primera
           this.dataSource.paginator?.firstPage();
+
+          this.loading = false;
+
         } else {
           console.error('Error: Respuesta inválida del servicio');
+          this.loading = false;
+
         }
       },
       error => {
         console.error(error);
+        this.loading = false;
+
       }
     );
   }

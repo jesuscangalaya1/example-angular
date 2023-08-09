@@ -31,7 +31,7 @@
   <div class="container">
     <a class="navbar-brand" href="index.html" id="logo">
       <img class="logo-img" src="assets/images/logo.png" alt="">
-      <span>T</span>ravel
+      <span>A</span>dventures
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -41,30 +41,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#book">Book</a>
+          <a class="nav-link" href="#packages">Paquetes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#packages">Packages</a>
+          <a class="nav-link" href="#services">Servicios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#services">Services</a>
+          <a class="nav-link" href="#gallary">Galeria</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#gallary">Gallary</a>
+          <a class="nav-link" href="#about">Contacto</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about">About</a>
-        </li>
-
-
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
+      <div class="btn-item-left">
+        <button class="btn btn-primary custom-button separated-button" type="button" routerLink="/lista-compras">Listar compras</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -72,176 +70,52 @@
 <!-- Navbar End -->
 
 
-<!--<div class="home">
-  <div class="content">
-    <h5>Welcome To World</h5>
-
-    <h1>Visit <span class="changecontent"></span></h1>
-    <a href="#book">Book Place</a>
-  </div>
-</div>-->
-
 <div class="home">
   <div class="content">
-    <h5>Welcome To World</h5>
-    <h1>Visit <span class="changecontent"></span></h1>
-    <a href="#book">Book Place</a>
+    <h5>Bienvenidos al Mundo</h5>
+    <br>
+    <h1>Visita <span class="changecontent"></span></h1>
+    <br>
+    <br>
+    <button mat-raised-button color="primary" (click)="searchFlights()">Buscar vuelos</button>
+  </div>
+  <div class="reserva">
+    <div class="card1">
+      <h2 class="titulo-reserva">PAQUETE NRº 1</h2>
+      <div class="image-container">
+        <img src="assets/images/reserva1.png" alt="Imagen Vuelo 1">
+        <button mat-raised-button color="primary" (click)="ShowReserva()" >Reservar</button>
+      </div>
+    </div>
+
+    <div class="card1">
+      <h2 class="titulo-reserva">PAQUETE NRº 2</h2>
+      <div class="image-container">
+        <img src="assets/images/reserva2.png" alt="Imagen Vuelo 2">
+        <button mat-raised-button color="primary" (click)="ShowReserva()" >Reservar</button>
+      </div>
+    </div>
+
+    <div class="card1">
+      <h2 class="titulo-reserva">PAQUETE NRº 3</h2>
+      <div class="image-container">
+        <img src="assets/images/reserva3.png" alt="Imagen Vuelo 3">
+        <button mat-raised-button color="primary" (click)="ShowReserva()" >Reservar</button>
+      </div>
+    </div>
   </div>
 </div>
 
-
-<section class="book" id="book">
-  <div class="book-img">
-    <img src="assets/images/book-img.png" alt="">
-  </div>
-  <div class="book-form">
-    <form action="">
-      <input type="text" placeholder="Where To" required>
-      <input type="text" placeholder="How Many" required>
-      <input type="date" placeholder="Arrivals" required>
-      <input type="date" placeholder="Leaving" required>
-      <textarea name="" id="" cols="5" rows="5" placeholder="Enter Your Name & Details" required></textarea>
-      <input type="submit" value="Book Now" class="submit" required>
-
-    </form>
-  </div>
-</section>
-
-
-<!-- Packages Start  FOR VUELOS ... -->
-<!--
-<section class="packages" id="packages">
-  <div class="container">
-    <div class="main-txt">
-      <h1><span>P</span>ACKAGES</h1>
-    </div>
-
-    <div class="row" style="margin-top: 30px;">
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/uk.png" alt="">
-          <div class="card-body">
-            <h3>United Kingdom</h3>
-            <p></p>
-            <div class="start">
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star "></i>
-            </div>
-            <h6>Price: <strong>$500</strong></h6>
-            <a href="#book">Book Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/france.png" alt="">
-          <div class="card-body">
-            <h3>France</h3>
-            <p></p>
-            <div class="start">
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star "></i>
-            </div>
-            <h6>Price: <strong>$500</strong></h6>
-            <a href="#book">Book Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/pakistan.png" alt="">
-          <div class="card-body">
-            <h3>Pakistan</h3>
-            <p></p>
-            <div class="start">
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star "></i>
-            </div>
-            <h6>Price: <strong>$500</strong></h6>
-            <a href="#book">Book Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row" style="margin-top: 30px;">
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/italy.png" alt="">
-          <div class="card-body">
-            <h3>Italy</h3>
-            <p></p>
-            <div class="start">
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star "></i>
-            </div>
-            <h6>Price: <strong>$500</strong></h6>
-            <a href="#book">Book Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/india.png" alt="">
-          <div class="card-body">
-            <h3>India</h3>
-            <p></p>
-            <div class="start">
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star "></i>
-            </div>
-            <h6>Price: <strong>$500</strong></h6>
-            <a href="#book">Book Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/us.png" alt="">
-          <div class="card-body">
-            <h3>United States</h3>
-            <p></p>
-            <div class="start">
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star "></i>
-            </div>
-            <h6>Price: <strong>$500</strong></h6>
-            <a href="#book">Book Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>-->
-
-
-<!-- Packages End -->
 
 
 <!-- LISTAR VUELOS - CON PAGINACION  START-->
 
 <section class="packages" id="packages">
   <div class="container">
+    <br>
+    <br>
     <div class="main-txt">
-      <h1><span>P</span>ACKAGES</h1>
+      <h1><span>P</span>AQUETES</h1>
     </div>
 
     <div class="row" style="margin-top: 30px;">
@@ -255,17 +129,19 @@
               <i class="fa-solid fa-star checked"></i>
               <i class="fa-solid fa-star checked"></i>
               <i class="fa-solid fa-star checked"></i>
+              <i class="fa-solid fa-star checked"></i>
+              <i class="fa-solid fa-star checked"></i>
               <i class="fa-solid fa-star "></i>
             </div>
-            <h6>Price: <strong>{{ flight.price }}</strong></h6>
-            <a (click)="purchaseFlight(flight.id, flight.image, flight.price)">Book Now</a>
+            <h6>Precio: <strong>{{ flight.price }}</strong></h6>
+            <a (click)="purchaseFlight(flight.id, flight.image, flight.price)">Comprar Ahora</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="paginator">
+  <!--div class="paginator">
     <mat-paginator
       [pageIndex]="currentPage"
       [pageSize]="pageSize"
@@ -273,81 +149,15 @@
       [length]="totalElements"
       (page)="onPageChangeFlights($event)"
     ></mat-paginator>
-  </div>
+  </div-->
+
 </section>
-
-
-<button class="btn btn-primary" type="button" routerLink="/lista-compras">listar compras</button>
-
-<!-- LISTAR VUELOS - CON PAGINACION  END !-->
-
-
-<!-- inputs y fechas Start -->
-
-<div>
-  <div class="container">
-    <mat-form-field>
-      <input type="text" matInput [formControl]="locationControl" placeholder="desstino" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <ng-container *ngIf="locationControl.value">
-          <mat-option *ngFor="let location of filteredLocations | async" [value]="location.city">
-            {{ location.city }}, {{ location.country }}
-          </mat-option>
-        </ng-container>
-      </mat-autocomplete>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input type="text" matInput [formControl]="locationControl" placeholder="origen" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <ng-container *ngIf="locationControl.value">
-          <mat-option *ngFor="let origins of filteredOrigins | async" [value]="origins.city">
-            {{ origins.city }}, {{ origins.country }}
-          </mat-option>
-        </ng-container>
-      </mat-autocomplete>
-    </mat-form-field>
-
-
-    <mat-form-field>
-      <mat-label>Fecha De Vuelta</mat-label>
-      <input matInput [matDatepicker]="pickerVuelta" [formControl]="fechaVueltaControl"
-             [value]="fechaVueltaControl.value | date: 'yyyy-MM-dd'">
-      <mat-datepicker-toggle matSuffix [for]="pickerVuelta"></mat-datepicker-toggle>
-      <mat-datepicker #pickerVuelta></mat-datepicker>
-    </mat-form-field>
-
-    <div></div>
-
-    <mat-form-field>
-      <mat-label>Fecha De Ida</mat-label>
-      <input matInput [matDatepicker]="pickerIda" [formControl]="fechaIdaControl"
-             [value]="fechaIdaControl.value | date: 'yyyy-MM-dd'">
-      <mat-datepicker-toggle matSuffix [for]="pickerIda"></mat-datepicker-toggle>
-      <mat-datepicker #pickerIda></mat-datepicker>
-    </mat-form-field>
-  </div>
-
-  <button mat-raised-button color="primary" (click)="searchFlights()">Buscar vuelos</button>
-
-</div>
-
-<!-- inputs y fechas  END -->
-
-
-
-
-
-
-
-
-
 
 <!-- Services Start -->
 <section class="services" id="services">
   <div class="container">
     <div class="main-txt" style="padding-top: 10px;">
-      <h1><span>S</span>ervices</h1>
+      <h1><span>S</span>ervicios</h1>
     </div>
 
     <div class="row" style="margin-top: 30px;">
@@ -355,7 +165,7 @@
         <div class="card">
           <i class="fas fa-hotel"></i>
           <div class="card-body text-center">
-            <h3>Affordable Hotels</h3>
+            <h3>Hoteles y Resorts</h3>
           </div>
         </div>
       </div>
@@ -363,7 +173,7 @@
         <div class="card">
           <i class="fas fa-utensils"></i>
           <div class="card-body text-center">
-            <h3>Food And Drinks</h3>
+            <h3>Comidas y Bebidas</h3>
           </div>
         </div>
       </div>
@@ -371,7 +181,7 @@
         <div class="card">
           <i class="fas fa-bullhorn"></i>
           <div class="card-body text-center">
-            <h3>Safty Guide</h3>
+            <h3>Guia Turistica</h3>
           </div>
         </div>
       </div>
@@ -382,7 +192,7 @@
         <div class="card">
           <i class="fas fa-globe-asia"></i>
           <div class="card-body text-center">
-            <h3>Around The World</h3>
+            <h3>Conoce el Mundo</h3>
           </div>
         </div>
       </div>
@@ -390,7 +200,7 @@
         <div class="card">
           <i class="fas fa-plane"></i>
           <div class="card-body text-center">
-            <h3>Fastest Travel</h3>
+            <h3>Viajes Rapidos</h3>
           </div>
         </div>
       </div>
@@ -398,7 +208,7 @@
         <div class="card">
           <i class="fas fa-hiking"></i>
           <div class="card-body text-center">
-            <h3>Adventures</h3>
+            <h3>Aventuras</h3>
           </div>
         </div>
       </div>
@@ -413,7 +223,7 @@
 <section class="gallary" id="gallary">
   <div class="container">
     <div class="main-txt">
-      <h1><span>G</span>allary</h1>
+      <h1><span>G</span>aleria</h1>
     </div>
     <div class="row" style="margin-top: 30px;">
       <div class="col-md-4 py-3 py-md-0">
@@ -457,9 +267,11 @@
 
 <!-- About Start -->
 <section class="about" id="about">
+
+
   <div class="container">
     <div class="main-txt" style="padding-top: 30px;">
-      <h1>About <span>Us</span></h1>
+      <h1>Contactame<span>Aqui</span></h1>
     </div>
 
     <div class="row" style="margin-top: 50px;">
@@ -471,8 +283,8 @@
       </div>
 
       <div class="col-md-6 py-3 py-md-0">
-        <h2>How Travel Agency Work Read.</h2>
-        <button id="about-btn">Read More...</button>
+        <h2>Somos una agencia comprometida</h2>
+        <button id="about-btn">Conoceme</button>
       </div>
 
     </div>
@@ -483,7 +295,7 @@
 
 <!-- Footer Start -->
 <footer id="footer">
-  <h1><span>T</span>ravel</h1>
+  <h1><span>Pacifico</span>Adventures</h1>
   <div class="social-links">
     <i class="fa-brands fa-twitter"></i>
     <i class="fa-brands fa-facebook-f"></i>
@@ -492,11 +304,13 @@
     <i class="fa-brands fa-pinterest-p"></i>
   </div>
   <div class="credite">
-    <p>Designed By <a href="#">SA Coding</a></p>
+    <br>
   </div>
   <div class="copyyright">
     <p>&copy;Copyright SA Coding.All Rights Reserved</p>
   </div>
+  <br>
+  <br>
 </footer>
 <!-- Footer End -->
 

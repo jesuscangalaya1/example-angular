@@ -12,13 +12,14 @@ export class PurchaseService {
 
   url = environment.URL;
 
-
+  //local = "http://localhost:8080/api/";
+  local = "https://api-2-e35q.onrender.com/api/";
   constructor(private http: HttpClient,
               private tokenService: TokenService) {}
 
 
   exportInvoice(id: number): Observable<any> {
-    const url = `${this.url}purchases/exportInvoice/${id}`;
+    const url = `${this.local}purchases/exportInvoice/${id}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 

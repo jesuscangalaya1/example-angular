@@ -9,6 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateFlightComponent} from "../../vuelo/create-flight/create-flight.component";
 import {PurchaseDbComponent} from "../purchase-db/purchase-db.component";
+import {AlertService} from "../../services/alert/alert.service";
 
 @Component({
   selector: 'app-comprar',
@@ -22,13 +23,17 @@ export class ComprarComponent implements OnInit{
   isLogged = false;
   isAdmin = false;
 
+  loading = false;
+
 
   constructor(
     private paymentService: PaymentService,
     private router: Router,
     private tokenService: TokenService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private alertService: AlertService,
+
   ) { }
 
   ngOnInit(): void {
@@ -74,14 +79,20 @@ export class ComprarComponent implements OnInit{
   checkout(nonce: string, amount: number): Observable<any> {
     console.log('Nonce: ' + nonce);
     console.log('Amount: ' + amount);
+    this.loading = true;
     const dto = new BraintreeDto(nonce, amount);
     return this.paymentService.checkout(dto).pipe(map(
       data => {
-        this.router.navigate(['/success']);
+        this.router.navigate(['/index-home']);
+        this.alertService.notification('Compra Exitosa', 'success'); // Muestra una notificación de éxito
+        this.loading = false; // Restablece el estado de carga a false
         return data;
       },
       err => {
         console.log(err)
+        this.alertService.notification('Error', 'error'); // Muestra una notificación de error
+
+        this.loading = false; // Restablece el estado de carga a false
       }
     ));
   }

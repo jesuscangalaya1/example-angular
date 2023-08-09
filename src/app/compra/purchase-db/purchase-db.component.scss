@@ -1,6 +1,74 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos para la sección de compra */
+.purchase {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 300px;
+  background-image: url('https://cdn.pixabay.com/photo/2015/07/19/13/33/credit-card-851506_1280.jpg');
+}
+
+.purchase h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333; /* Color del texto del título */
+  text-align: center; /* Alineación del título al centro */
+  color: orange;
+}
+.purchase-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.form-group input[type="number"],
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .flight-image {
-  width: 200px; /* Ajusta el tamaño según tus necesidades */
-  height: auto;
+  max-width: 100%;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.submit-button:active {
+  background-color: #003b80;
 }
 
 

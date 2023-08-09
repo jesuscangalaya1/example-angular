@@ -16,6 +16,7 @@ import {LocationsDto} from "../../models/locations-dto";
 import {debounceTime, map, startWith, switchMap} from "rxjs/operators";
 import {Origins} from "../../models/origins";
 import {FormControl} from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-index-home',
@@ -26,7 +27,7 @@ export class IndexHomeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: MatTableDataSource<FlightDto>;
-  pageSize = 5;
+  pageSize = 6;
   pageSizeOptions: number[] = [6, 12];
   totalElements = 0; // Inicializar en 0
   totalPages: number;
@@ -46,6 +47,9 @@ export class IndexHomeComponent implements OnInit {
 
   isLogged = false;
   isAdmin = false;
+
+
+  loading = false;
 
   constructor(private locationService: LocationService,
               private flightService: FlightService,
@@ -186,5 +190,18 @@ export class IndexHomeComponent implements OnInit {
     );
   }
 
+
+
+  ShowReserva(){
+    Swal.fire({
+      icon: 'success',
+      title: '¡Excelente Reserva Exitosa!',
+      html: '<i class="fas fa-check-circle"></i> Reserva confirmada.',
+      timer: 2000, // Mostrará la alerta durante 2 segundos
+      timerProgressBar: true, // Muestra una barra de progreso
+      showConfirmButton: false // Oculta el botón "Aceptar"
+
+    })
+  }
 
 }

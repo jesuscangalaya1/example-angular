@@ -5,7 +5,7 @@
   <button (click)="drawer.toggle()" mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Material UI Tutorial</span>
+  <span>PACIFIC ADVENTURES</span>
   <span class="example-spacer"></span>
   <button routerLink="" mat-button>Home</button>
   <button [matMenuTriggerFor]="lvl1master" mat-button>Master</button>
@@ -69,14 +69,14 @@
       <mat-list-item>
         <button routerLink="/list-itineraries" mat-button>
           <mat-icon>explore</mat-icon>
-          itineraries
+          Itinerarios
         </button>
 
       </mat-list-item>
       <mat-list-item>
         <button routerLink="/flights" mat-button>
           <mat-icon>table</mat-icon>
-          Flights
+          Vuelos
         </button>
       </mat-list-item>
       <mat-list-item>
@@ -88,7 +88,7 @@
       <mat-list-item>
         <button routerLink="/list-users" mat-button>
           <mat-icon>help</mat-icon>
-          Users
+          Usuarios
         </button>
       </mat-list-item>
       <mat-list-item>
@@ -127,11 +127,11 @@
           <thead>
           <tr>
             <th>ID</th>
-            <th>Capacity</th>
-            <th>Duration</th>
-            <th>Price</th>
-            <th>Departure Time</th>
-            <th>Image</th>
+            <th>Capacidad</th>
+            <th>Duración</th>
+            <th>Precio</th>
+            <th>Hora de salida</th>
+            <th>Imagen</th>
             <th>Update</th>
             <th>Detail</th>
             <th>Deleted</th>
@@ -140,9 +140,9 @@
           <tbody>
           <tr *ngFor="let flight of flights">
             <td>{{ flight.id }}</td>
-            <td>{{ flight.capacity }}</td>
-            <td>{{ flight.duration }}</td>
-            <td>{{ flight.price }}</td>
+            <td>{{ flight.capacity }} personas</td>
+            <td>{{ flight.duration }} horas</td>
+            <td>$/{{ flight.price }}</td>
             <td>{{ flight.departureTime }}</td>
             <td class="image-cell">
               <img [src]="flight.image" alt="Flight Image" class="flight-image">

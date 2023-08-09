@@ -23,6 +23,8 @@ export class PurchaseDbComponent implements OnInit {
 
   isAdmin = false;
 
+  loading = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -44,6 +46,7 @@ export class PurchaseDbComponent implements OnInit {
   }
 
   comprarVuelo() {
+
     const purchaseRequest: PurchaseRequest = {
       amount: this.amount,
       price: this.flightPrice,
@@ -64,11 +67,15 @@ export class PurchaseDbComponent implements OnInit {
     console.log("httpOptions:", httpOptions);
     console.log("token:", token);
 
+    this.loading = true;
+
     this.purchaseService.purchaseFlight(purchaseRequest, httpOptions).subscribe(
       response => {
         console.log("response:", response); // Maneja la respuesta de la compra exitosa
         this.dialogRef.close(); // Cierra el modal
         this.router.navigate(['/pagar']); // Realiza la redirección
+        this.loading = false;
+
       },
       error => {
         console.error("error:", error); // Maneja el error de la compra
@@ -78,6 +85,9 @@ export class PurchaseDbComponent implements OnInit {
         this.snackBar.open(errorMessage, "Cerrar", {
           duration: 3000, // Duración del mensaje en milisegundos
         });
+
+        this.loading = false;
+
       }
     );
   }

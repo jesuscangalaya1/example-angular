@@ -1,9 +1,92 @@
-.container{
-  margin: 100px;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
+.mat-drawer-container {
+  height: 100vh;
+  background-image: url('https://cdn.pixabay.com/photo/2016/07/30/00/03/winding-road-1556177_1280.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.filter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #795a5a;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  margin-right: 10px;
+}
+
+button.mat-raised-button {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(110, 45, 45);
+  margin-right: 10px;
+}
+
+button.mat-raised-button[color="primary"] {
+  background-color: #ff4500;
+}
+
+button.mat-raised-button[color="primary"]:last-child {
+  background-color: #2e8b57;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flight-card {
+  width: 300px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+  padding: 5px;
+}
+
+.flight-image {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.flight-title {
+  text-align: center;
+  font-size: 20px;
+}
+
+.flight-info {
+  margin-bottom: 5px;
+}
+
+.card-footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
 }
 
 .paginator {
@@ -27,7 +110,7 @@
 
 .mat-paginator-navigation button {
   background-color: #007bff;
-  color: #ffffff;
+  color: #ac1a1a;
   border-radius: 4px;
   font-weight: bold;
   transition: background-color 0.3s ease;
@@ -45,66 +128,11 @@
 
 .filter-form {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
-
-.filter-form mat-form-field {
-  margin-right: 20px;
-  width: 150px;
-}
-
-.filter-form button {
-  margin-left: 10px;
-}
-
-
-.image-cell {
-  width: 100px; /* Ajusta el ancho de la celda de la imagen según tus necesidades */
-}
-
-.flight-image {
-  max-width: 100%; /* Ajusta el tamaño máximo de la imagen dentro de la celda */
-  max-height: 100px; /* Ajusta la altura máxima de la imagen dentro de la celda */
-  object-fit: contain; /* Controla cómo se ajusta la imagen dentro del contenedor */
-}
-
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.flight-card {
-  margin: 10px;
-  width: 300px;
-}
-
-.card-header {
-  text-align: center;
-}
-
-.flight-image {
-  width: 100%;
-  height: auto;
-}
-
-.flight-title {
-  text-align: center;
-  font-size: 20px;
-}
-
-.flight-info {
-  margin-bottom: 5px;
-}
-
-.card-footer {
-  text-align: center;
-  margin-top: 10px;
-}
-
-
-
-

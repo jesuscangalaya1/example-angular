@@ -11,13 +11,95 @@ html::-webkit-scrollbar-track{
   background: transparent;
 }
 
+.reserva {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.card1 {
+  width: 200px; /* Ajusta el tamaño deseado */
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  text-align: center;
+}
+
+.card1 img {
+  width: 100%;
+  height: auto;
+}
+
+
+button {
+  transition: background-color 0.2s ease;
+}
+
+.titulo-reserva {
+  font-size: 24px; /* Tamaño de fuente */
+  color: #3f51b5; /* Color del texto */
+  text-transform: uppercase; /* Convertir el texto a mayúsculas */
+  font-weight: bold; /* Texto en negrita */
+  margin: 0; /* Espaciado cero */
+  padding: 5px 0; /* Espaciado superior e inferior */
+  border-bottom: 2px solid #3f51b5; /* Línea inferior */
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  border: 10px solid #fff; /* Agregar marco blanco a la imagen */
+  border-radius: 5px; /* Ajustar según prefieras */
+  overflow: hidden; /* Para asegurar que el marco contenga la imagen */
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+/* Estilos para el botón dentro de la imagen */
+.image-container button {
+  position: absolute;
+  bottom: 5px; /* Alinear el botón en el lado inferior */
+  right: 5px; /* Alinear el botón al lado derecho */
+  z-index: 1;
+}
+//botones
+.custom-button {
+  background-color: #ff4500;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.separated-button {
+  margin-left: 30px;
+}
+
+div.btn-item-left {
+  left: 10px;
+
+}
+
+.custom-button:hover {
+  background-color: #ff5722;
+}
+
 //asd
 .imagen {
   width: 100%;
   height: auto;
   object-fit: cover;
-  margin-top: -20px; /* Ajusta el valor según sea necesario */
+  margin-top: -20px;
 }
+
 
 
 
@@ -31,14 +113,29 @@ html::-webkit-scrollbar{
   width: 10px;
 }
 body{
-  background: #f9f9f9;
+  background-image: url("https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 /* Header Start */
-#navbar{
 
-
-  background: #f9f9f9;
+nav.navbar {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
 }
+#navbar{
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+
 #logo{
   font-size: 36px;
   font-weight: 700;
@@ -75,16 +172,46 @@ body{
 }
 /* Header End */
 .logo-img {
-  max-width: 100px;  /* Ajusta el tamaño deseado */
-  height: auto;    /* Mantiene la proporción de la imagen */
+  max-width: 100px;
+  height: auto;
+}
+.main-txt {
+  text-align: center;
+  padding-top: 30px;
 }
 
+.main-txt h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ff4500; /* Color naranja llamativo */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.main-txt h1 span {
+  display: block;
+  font-size: 24px;
+  color: #333; /* Color de texto oscuro */
+}
+
+.main-txt h1 span::before {
+  content: "\2022"; /* Agrega un punto de bala antes del texto */
+  color: #ff4500; /* Color naranja */
+  margin-right: 10px;
+}
+
+.main-txt h1 span::after {
+  content: "\2022"; /* Agrega un punto de bala después del texto */
+  color: #ff4500; /* Color naranja */
+  margin-left: 10px;
+}
 
 /* Home Content Start   */
-.home{
+
+.home {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));//, url("../../assets/images/background img.png");
+  background-image: url("https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -120,17 +247,17 @@ body{
   animation: changetext 10s infinite linear;
 }
 @keyframes changetext{
-  0%{content: "France";}
-  10%{content: "Spain";}
-  20%{content: "United States";}
+  0%{content: "Francia";}
+  10%{content: "España";}
+  20%{content: "Estados Unidos";}
   30%{content: "China";}
   40%{content: "India";}
   50%{content: "Pakistan";}
-  60%{content: "Italy";}
-  70%{content: "Turkey";}
+  60%{content: "Italia";}
+  70%{content: "Turquia";}
   80%{content: "Mexico";}
-  90%{content: "Germany";}
-  100%{content: "United Kingdom";}
+  90%{content: "Alemania";}
+  100%{content: "Inglaterra";}
 }
 .home .content a{
   padding: 10px;
@@ -203,7 +330,6 @@ form textarea{
   font-size: 16px;
   font-weight: 600;
   background: orange;
-  color: white;
   width: 160px;
   transition: 0.5s ease;
   cursor: pointer;
@@ -219,55 +345,96 @@ form textarea{
 }
 
 /* Packages Start */
-.main-txt h1{
-  text-align: center;
-  margin-top: 30px;
-  font-weight: 700;
+.packages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.main-txt h1 span{
+
+.card {
+  width: 300px; /* Ajusta el tamaño deseado */
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  text-align: center;
+  margin: 20px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px; /* Ajusta la altura deseada */
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}
+
+.card .card-body {
+  padding: 15px;
+}
+
+.star {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star i {
+  font-size: 15px;
+  color: #ff4500;
+}
+
+.checked {
   color: orange;
 }
-.packages .card{
-  border-radius: 5px;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-.packages .card img{
-  border-radius: 5px;
-}
-.packages .card .card-body{
-  background: transparent;
-}
-.packages .card .card-body h3{
-  font-size: 25px;
+
+.card h3 {
+  font-size: 20px;
   font-weight: 600;
+  color: #333;
+  margin: 10px 0;
 }
-.packages .card .card-body p{
+
+.card p {
   font-weight: 600;
   letter-spacing: 1px;
+  color: #777;
 }
-.star i{
-  font-size: 15px;
+
+.card h6 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 15px 0;
 }
-.checked{
-  color: orange;
-}
-.packages .card .card-body h6{
-  font-size: 20px;
-}
-.packages .card .card-body a{
-  padding: 10px;
+
+.card a {
+  display: inline-block;
+  padding: 10px 20px;
   text-decoration: none;
   background: orange;
   color: white;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.card a:hover {
+  background-color: #ff6600;
 }
 /* Packages End */
 
 /* Services Start */
 .services{
-  background: #f9f9f9;
-  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+  background-image: url('https://cdn.pixabay.com/photo/2018/11/29/21/19/hamburg-3846525_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .services .card{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -289,7 +456,15 @@ form textarea{
 
 /* Gallary Start */
 .gallary{
-  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url('https://cdn.pixabay.com/photo/2018/01/31/12/16/architecture-3121009_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 .gallary .card{
   border-radius: 10px;
@@ -311,8 +486,15 @@ form textarea{
 
 /* About Start */
 .about{
-  margin-top: 50px;
-  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url('https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 .about .card{
   border-radius: 10px;
@@ -386,21 +568,30 @@ form textarea{
 /* Reviews Start */
 
 
+/* Estilos específicos para la sección */
 
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #c6fa0b;
+  margin-bottom: 10px;
+}
 
 
 /* Footer Start */
 #footer{
   width: 100%;
-  margin-top: 150px;
   text-align: center;
   background: #f9f9f9;
 }
+
 #footer h1{
-  font-weight: 600;
+
   padding-top: 30px;
   text-shadow: 0px 0px 1px black;
 }
+
 #footer h1 span{
   color: #ffa500;
 }
