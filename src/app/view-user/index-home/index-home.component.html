@@ -6,311 +6,278 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Website</title>
 
-  <!-- Bootstrap Links -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <!-- Bootstrap Links -->
-
-
-  <!-- Google Fonts Links -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Angular Material Links -->
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-  <!-- Google Fonts Links -->
+  <!-- Angular Material Links -->
 
-
-  <!-- Font Awesome Cdn -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-  <!-- Font Awesome Cdn -->
 </head>
 <body>
+<!--NavBar-->
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <a class="navbar-brand" routerLink="/inicio" id="logo">
+    <img class="logo-img" src="assets/images/logo.png" alt="">
+    <span>A</span>dventures
+  </a>
 
+  <div class="spacer">
 
-<!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg" id="navbar">
-  <div class="container">
-    <a class="navbar-brand" href="index.html" id="logo">
-      <img class="logo-img" src="assets/images/logo.png" alt="">
-      <span>A</span>dventures
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span><i class="fa-solid fa-bars"></i></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#packages">Paquetes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#services">Servicios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#gallary">Galeria</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about">Contacto</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form>
-      <div class="btn-item-left">
-        <button class="btn btn-primary custom-button separated-button" type="button" routerLink="/lista-compras">Listar compras</button>
-      </div>
-    </div>
+    <a mat-button routerLink="home">Inicio</a>
+    <a mat-button cdkScrollLink="'packages'">Paquetes</a>
+    <a mat-button routerLink="services">Servicios</a>
+    <a mat-button routerLink="gallary">Galeria</a>
+    <a mat-button routerLink="about">Contacto</a>
   </div>
-</nav>
+  <button mat-raised-button color="primary" routerLink="/lista-compras">Listar compras</button>
+  <button mat-raised-button class="logout-button" color="warn">Cerrar Cesion</button>
+</mat-toolbar>
+<!--NavBar Finalll-->
 
-<!-- Navbar End -->
-
-
-<div class="home">
+<section class="home" id="home">
   <div class="content">
     <h5>Bienvenidos al Mundo</h5>
     <br>
     <h1>Visita <span class="changecontent"></span></h1>
-    <br>
-    <br>
     <button mat-raised-button color="primary" (click)="searchFlights()">Buscar vuelos</button>
   </div>
-  <div class="reserva">
-    <div class="card1">
-      <h2 class="titulo-reserva">PAQUETE NRº 1</h2>
-      <div class="image-container">
-        <img src="assets/images/reserva1.png" alt="Imagen Vuelo 1">
-        <button mat-raised-button color="primary" (click)="ShowReserva()" >Reservar</button>
-      </div>
+
+  <div class="container">
+
+    <div class="spacer">
+      <mat-card class="card1">
+        <mat-card-header>
+          <mat-card-title class="titulo-reserva">PAQUETE NRº 1</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="image-container">
+          <img mat-card-image src="assets/images/reserva1.png" alt="Imagen Vuelo 1">
+          <button  mat-raised-button class="button" color="primary" (click)="ShowReserva()">Reservar</button>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+    <div class="spacer">
+      <mat-card class="card1">
+        <mat-card-header>
+          <mat-card-title class="titulo-reserva">PAQUETE NRº 2</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="image-container">
+          <img mat-card-image src="assets/images/reserva2.png" alt="Imagen Vuelo 2">
+          <button mat-raised-button class="button" color="primary" (click)="ShowReserva()">Reservar</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="spacer">
+      <mat-card class="card1">
+        <mat-card-header>
+          <mat-card-title class="titulo-reserva">PAQUETE NRº 3</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="image-container">
+          <img src="assets/images/reserva3.png" alt="Imagen Vuelo 3">
+          <button  mat-raised-button class="button" color="primary" (click)="ShowReserva()">Reservar</button>
+        </mat-card-content>
+      </mat-card>
     </div>
 
-    <div class="card1">
-      <h2 class="titulo-reserva">PAQUETE NRº 2</h2>
-      <div class="image-container">
-        <img src="assets/images/reserva2.png" alt="Imagen Vuelo 2">
-        <button mat-raised-button color="primary" (click)="ShowReserva()" >Reservar</button>
-      </div>
-    </div>
-
-    <div class="card1">
-      <h2 class="titulo-reserva">PAQUETE NRº 3</h2>
-      <div class="image-container">
-        <img src="assets/images/reserva3.png" alt="Imagen Vuelo 3">
-        <button mat-raised-button color="primary" (click)="ShowReserva()" >Reservar</button>
-      </div>
-    </div>
   </div>
-</div>
-
-
+</section>
 
 <!-- LISTAR VUELOS - CON PAGINACION  START-->
 
 <section class="packages" id="packages">
   <div class="container">
-    <br>
-    <br>
     <div class="main-txt">
       <h1><span>P</span>AQUETES</h1>
     </div>
-
-    <div class="row" style="margin-top: 30px;">
-      <div class="col-md-4 py-3 py-md-0" *ngFor="let flight of dataSource?.data">
-        <div class="card">
-          <img [src]="flight.image" alt="Flight Image" class="flight-image">
-          <div class="card-body">
+    <mat-card class="card-container">
+      <div class="flight-list">
+        <mat-card class="flight-card" *ngFor="let flight of dataSource?.data">
+          <img mat-card-image [src]="flight.image" alt="Flight Image" class="flight-image">
+          <mat-card-content>
             <p></p>
-            <div class="start">
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star checked"></i>
-              <i class="fa-solid fa-star "></i>
+            <div class="star-rating">
+              <mat-icon class="fa-solid fa-star checked">star</mat-icon>
+              <mat-icon class="fa-solid fa-star checked">star</mat-icon>
+              <mat-icon class="fa-solid fa-star checked">star</mat-icon>
+              <mat-icon class="fa-solid fa-star checked">star</mat-icon>
+              <mat-icon class="fa-solid fa-star checked">star</mat-icon>
+              <mat-icon class="fa-solid fa-star checked">star</mat-icon>
+              <mat-icon class="fa-solid fa-star">star</mat-icon>
             </div>
             <h6>Precio: <strong>{{ flight.price }}</strong></h6>
             <a (click)="purchaseFlight(flight.id, flight.image, flight.price)">Comprar Ahora</a>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </div>
-    </div>
+    </mat-card>
   </div>
-
-  <!--div class="paginator">
-    <mat-paginator
-      [pageIndex]="currentPage"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="pageSizeOptions"
-      [length]="totalElements"
-      (page)="onPageChangeFlights($event)"
+  <!--
+   <mat-paginator
+    [pageIndex]="currentPage - 1"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [length]="totalElements"
+    (page)="onPageChangeFlights($event)"
     ></mat-paginator>
-  </div-->
+  -->
+
 
 </section>
 
 <!-- Services Start -->
 <section class="services" id="services">
   <div class="container">
-    <div class="main-txt" style="padding-top: 10px;">
+    <div class="main-txt" >
       <h1><span>S</span>ervicios</h1>
     </div>
+    <br>
 
-    <div class="row" style="margin-top: 30px;">
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <i class="fas fa-hotel"></i>
-          <div class="card-body text-center">
-            <h3>Hoteles y Resorts</h3>
-          </div>
+    <mat-card-content class="row">
+      <mat-card class="service-card">
+        <mat-icon class="service-icon">hotel</mat-icon>
+        <div class="text-center">
+          <h3>Hoteles y Resorts</h3>
         </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <i class="fas fa-utensils"></i>
-          <div class="card-body text-center">
-            <h3>Comidas y Bebidas</h3>
-          </div>
+      </mat-card>
+      <mat-card class="service-card">
+        <mat-icon class="service-icon">restaurant_menu</mat-icon>
+        <div class="text-center">
+          <h3>Comidas y Bebidas</h3>
         </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <i class="fas fa-bullhorn"></i>
-          <div class="card-body text-center">
-            <h3>Guia Turistica</h3>
-          </div>
+      </mat-card>
+      <mat-card class="service-card">
+        <mat-icon class="service-icon">tour</mat-icon>
+        <div class="text-center">
+          <h3>Guia Turistica</h3>
         </div>
-      </div>
-    </div>
+      </mat-card>
 
-    <div class="row" style="margin-top: 30px;">
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <i class="fas fa-globe-asia"></i>
-          <div class="card-body text-center">
-            <h3>Conoce el Mundo</h3>
-          </div>
+    </mat-card-content>
+
+    <mat-card-content class="row">
+
+      <mat-card class="service-card">
+        <mat-icon class="service-icon">public</mat-icon>
+        <div class="text-center">
+          <h3>Conoce el Mundo</h3>
         </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <i class="fas fa-plane"></i>
-          <div class="card-body text-center">
-            <h3>Viajes Rapidos</h3>
-          </div>
+      </mat-card>
+      <mat-card class="service-card">
+        <mat-icon class="service-icon">airplane</mat-icon>
+        <div class="text-center">
+          <h3>Viajes Rapidos</h3>
         </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <i class="fas fa-hiking"></i>
-          <div class="card-body text-center">
-            <h3>Aventuras</h3>
-          </div>
+      </mat-card>
+      <mat-card class="service-card">
+        <mat-icon class="service-icon">hiking</mat-icon>
+        <div class="text-center">
+          <h3>Aventuras</h3>
         </div>
-      </div>
-    </div>
+      </mat-card>
+
+    </mat-card-content>
   </div>
 </section>
-
 <!-- Services End -->
 
 
+<!-- Gallary Start -->
 <!-- Gallary Start -->
 <section class="gallary" id="gallary">
   <div class="container">
     <div class="main-txt">
       <h1><span>G</span>aleria</h1>
     </div>
-    <div class="row" style="margin-top: 30px;">
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/g1.png" alt="" height="230px">
-        </div>
+    <div class="row">
+      <div class="container">
+        <mat-card class="gallery-card">
+          <div class="image-container">
+            <img mat-card-image src="assets/images/g1.png" alt="">
+          </div>
+        </mat-card>
       </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/g2.png" alt="" height="230px">
-        </div>
+      <div class="container">
+        <mat-card class="gallery-card">
+          <div class="image-container">
+            <img mat-card-image src="assets/images/g2.png" alt="">
+          </div>
+        </mat-card>
       </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/g3.png" alt="" height="230px">
-        </div>
+      <div class="container">
+        <mat-card class="gallery-card">
+          <div class="image-container">
+            <img mat-card-image src="assets/images/g3.png" alt="">
+          </div>
+        </mat-card>
       </div>
     </div>
 
-    <div class="row" style="margin-top: 30px;">
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/g4.png" alt="" height="230px">
-        </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/g5.png" alt="" height="230px">
-        </div>
-      </div>
-      <div class="col-md-4 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/g6.png" alt="" height="230px">
-        </div>
-      </div>
-    </div>
+
   </div>
 </section>
 <!-- Gallary End -->
+<!-- Gallary End -->
+
 
 
 <!-- About Start -->
 <section class="about" id="about">
-
-
   <div class="container">
-    <div class="main-txt" style="padding-top: 30px;">
+    <div class="main-txt" >
       <h1>Contactame<span>Aqui</span></h1>
     </div>
-
-    <div class="row" style="margin-top: 50px;">
-
-      <div class="col-md-6 py-3 py-md-0">
-        <div class="card">
-          <img src="assets/images/about-img.png" alt="">
-        </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="content">
+        <mat-card class="matimagen">
+          <div class="image-container">
+            <img mat-card-image src="assets/images/about-img.png" alt="">
+          </div>
+        </mat-card>
       </div>
-
-      <div class="col-md-6 py-3 py-md-0">
-        <h2>Somos una agencia comprometida</h2>
-        <button id="about-btn">Conoceme</button>
+      <div class="content">
+        <mat-card class="mattitulo">
+          <mat-card-header>
+            <h1>Pacifico Adeventures</h1>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Pacific Adventures es una empresa dedicada a crear
+              experiencias turísticas inolvidables. Con un enfoque en la excelencia
+              y la satisfacción del cliente, Pacific Adventures
+              se enorgullece de ofrecer paquetes turísticos
+              personalizados que abarcan desde relajantes
+              escapadas en hoteles de lujo hasta emocionantes
+              aventuras en lugares exóticos. Nuestro compromiso
+              es proporcionar momentos únicos y auténticos,
+              guiando a los viajeros a través de descubrimientos
+              memorables mientras crean recuerdos invaluables en
+              cada destino que exploran.</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" id="about-btn">Conóceme</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
-
     </div>
   </div>
 </section>
 <!-- About End -->
 
 
+
 <!-- Footer Start -->
 <footer id="footer">
   <h1><span>Pacifico</span>Adventures</h1>
   <div class="social-links">
-    <i class="fa-brands fa-twitter"></i>
-    <i class="fa-brands fa-facebook-f"></i>
-    <i class="fa-brands fa-instagram"></i>
-    <i class="fa-brands fa-youtube"></i>
-    <i class="fa-brands fa-pinterest-p"></i>
+    <mat-icon class="fa-brands fa-twitter">twitter</mat-icon>
+    <mat-icon class="fa-brands fa-facebook-f">facebook</mat-icon>
+    <mat-icon class="fa-brands fa-instagram">instagram</mat-icon>
+    <mat-icon class="fa-brands fa-youtube">youtube</mat-icon>
+    <mat-icon class="fa-brands fa-pinterest-p">pinterest</mat-icon>
   </div>
-  <div class="credite">
-    <br>
-  </div>
+  <div class="credite"></div>
   <div class="copyyright">
-    <p>&copy;Copyright SA Coding.All Rights Reserved</p>
+    <p>&copy SA Coding. All Rights Reserved</p>
   </div>
-  <br>
-  <br>
 </footer>
 <!-- Footer End -->
 

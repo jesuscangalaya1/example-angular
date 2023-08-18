@@ -50,11 +50,13 @@
           <mat-form-field>
             <mat-label>Contraseña</mat-label>
             <input matInput [type]="hidePassword ? 'password' : 'text'" name="password" id="password" [(ngModel)]="password" required>
-            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" [attr.aria-label]="hidePassword ? 'Mostrar contraseña' : 'Ocultar contraseña'">
-              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-            </button>
+            <mat-icon matSuffix (click)="togglePasswordVisibility()" [ngClass]="{'active': !hidePassword}" style="cursor: pointer;">
+              {{ hidePassword ? 'visibility_off' : 'visibility' }}
+            </mat-icon>
           </mat-form-field>
         </div>
+
+
 
 
         <div class="form-group text-center">

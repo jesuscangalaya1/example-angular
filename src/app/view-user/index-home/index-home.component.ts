@@ -27,7 +27,7 @@ export class IndexHomeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: MatTableDataSource<FlightDto>;
-  pageSize = 6;
+  pageSize = 3;
   pageSizeOptions: number[] = [6, 12];
   totalElements = 0; // Inicializar en 0
   totalPages: number;

@@ -8,6 +8,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Itinerary} from "../../models/itinerary";
 import {ItineraryService} from "../../services/itinerary.service";
 import {AlertService} from "../../services/alert/alert.service";
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-list-itineraries',
@@ -85,23 +87,61 @@ export class ListItinerariesComponent implements OnInit {
   uploadFile() {
     this.loading = true;
 
-    this.service.importExcel(this.file).subscribe(
-      (data) => {
-        console.log(data);
+    if (!this.file) {
+      this.alertService.notification('No se ha seleccionado ningún archivo.', 'error');
+      this.loading = false;
 
-        this.alertService.notification('Datos importados !', 'success'); // Muestra una notificación de éxito
-        this.listItineraries();
+      return;
+    }
+
+    const allowedExtensions = ['.xls', '.xlsx'];
+    const fileName = this.file.name;
+    const fileExtension = fileName.substring(fileName.lastIndexOf('.')).toLowerCase();
+
+    if (!allowedExtensions.includes(fileExtension)) {
+      this.alertService.notification('Formato de archivo no válido. Se esperaba un archivo Excel.', 'error');
+      this.loading = false;
+
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      const fileData = e.target.result;
+      const workbook = XLSX.read(fileData, {type: 'binary'});
+
+      const requiredColumns = ['fecha_ida', 'fecha_salida', 'hora', 'destino_id', 'origen_id'];
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+
+      // Verificar si todas las columnas requeridas están presentes en la primera fila
+      const headerRow = XLSX.utils.sheet_to_json(worksheet, {header: 1})[0] as string[];
+      const missingColumns = requiredColumns.filter(column => !headerRow.includes(column));
+
+      if (missingColumns.length > 0) {
+        const missingColumnsText = missingColumns.join(', ');
+        this.alertService.notification(`El archivo no contiene las siguientes columnas requeridas: ${missingColumnsText}`, 'error');
         this.loading = false;
-
-      },
-      (error) => {
-        console.log(error);
-        this.alertService.notification('Error !', 'error'); // Muestra una notificación de éxito
-
-        this.loading = false;
-
+        return;
       }
-    );
+
+      // Resto de la lógica para importar los datos a la base de datos
+      // ...
+
+      this.loading = true;
+      this.service.importExcel(this.file).subscribe(
+        (data) => {
+          console.log(data);
+
+          this.alertService.notification('Datos importados !', 'success'); // Muestra una notificación de éxito
+          this.listItineraries();
+          this.loading = false;
+
+        }
+      );
+    };
+
+    reader.readAsBinaryString(this.file);
   }
 
 
@@ -135,13 +175,13 @@ export class ListItinerariesComponent implements OnInit {
 
   goToFirstPage() {
     this.currentPage = 0;
-    this.onPageChange({ pageIndex: this.currentPage, pageSize: this.pageSize, length: this.totalElements });
+    this.onPageChange({pageIndex: this.currentPage, pageSize: this.pageSize, length: this.totalElements});
   }
 
 
   goToLastPage() {
     this.currentPage = this.totalPages - 1;
-    this.onPageChange({ pageIndex: this.currentPage, pageSize: this.pageSize, length: this.totalElements });
+    this.onPageChange({pageIndex: this.currentPage, pageSize: this.pageSize, length: this.totalElements});
   }
 
   onPageChange(event: PageEvent) {

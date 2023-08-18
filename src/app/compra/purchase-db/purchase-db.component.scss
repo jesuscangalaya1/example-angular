@@ -1,74 +1,60 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+
+.purchase {
+  background-color: #85BB65;
+  padding: 20px;
 }
 
-/* Estilos para la sección de compra */
-.purchase {
-  padding: 20px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.8);
+.container {
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  min-height: 300px;
-  background-image: url('https://cdn.pixabay.com/photo/2015/07/19/13/33/credit-card-851506_1280.jpg');
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.purchase h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333; /* Color del texto del título */
-  text-align: center; /* Alineación del título al centro */
-  color: orange;
-}
 .purchase-form {
-  max-width: 400px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
+.flight-image {
+  width: 200px; /* Cambia este valor al ancho deseado */
+  height: auto; /* Esto mantiene la proporción original de la imagen */
 }
 
-.form-group input[type="number"],
-.form-group input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+
+.hidden {
+  display: none;
 }
 
 .flight-image {
   max-width: 100%;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .submit-button {
-  background-color: #007bff;
+  background-color: #1976d2;
   color: #fff;
-  border: none;
   padding: 10px 20px;
-  font-size: 16px;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: #1565c0;
 }
 
-.submit-button:active {
-  background-color: #003b80;
+.mat-label{
+  color: red;
 }
-
-

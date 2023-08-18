@@ -18,11 +18,9 @@ export class LoginComponent implements OnInit {
   nombreUsuario: string;
   password: string;
 
-  errMsj: string;
   hidePassword: boolean = true;
 
   loading = false;
-
 
   constructor(
     private tokenService: TokenService,
@@ -38,8 +36,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-
   onLogin(): void {
+
+
     this.loading = true;
     this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
     this.authService.login(this.loginUsuario).subscribe(
@@ -54,23 +53,15 @@ export class LoginComponent implements OnInit {
         this.loading = false; // Restablece el estado de carga a false
       },
       err => {
-        /*this.toastr.error(this.errMsj, 'Fail', {
-          timeOut: 3000, positionClass: 'toast-top-center',
-        });*/
         this.alertService.notification('Compruebe sus datos ... ', 'error'); // Muestra una notificación de error
-
         this.loading = false; // Restablece el estado de carga a false
       }
     );
   }
 
-
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
-
-
-  // GMAIL - AUTH ...
 
 
 }

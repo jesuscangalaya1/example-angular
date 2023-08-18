@@ -1,29 +1,32 @@
 
-<app-loading *ngIf="loading"></app-loading>
 
-<section class="purchase" *ngIf="!loading">
+<section class="purchase">
   <div class="container">
     <h2>Realizar compra</h2>
     <form (ngSubmit)="comprarVuelo()" class="purchase-form">
       <div class="form-group">
-        <label for="amount">Cantidad:</label>
-        <input type="number" id="amount" name="amount" [(ngModel)]="amount" required>
+        <mat-form-field>
+          <mat-label>Cantidad:</mat-label>
+          <input matInput type="number" name="amount" [(ngModel)]="amount" required>
+        </mat-form-field>
       </div>
       <div class="form-group">
-        <label for="flightPrice">Precio:</label>
-        <input type="number" id="flightPrice" name="flightPrice" [(ngModel)]="flightPrice" required>
+        <mat-form-field>
+          <mat-label>Precio:</mat-label>
+          <input matInput type="number" name="flightPrice" [(ngModel)]="flightPrice" required disabled>
+        </mat-form-field>
       </div>
-      <!-- Elimina el campo flightId -->
-      <div class="form-group hidden">
-        <label for="flightId">ID del vuelo:</label>
-        <input type="number" id="flightId" name="flightId" [(ngModel)]="flightId" required>
-      </div>
-      <!-- Muestra la imagen del vuelo -->
       <div class="form-group">
-        <label>Imagen del vuelo:</label>
+        <mat-form-field>
+          <mat-label>ID del vuelo:</mat-label>
+          <input matInput type="number" name="flightId" [(ngModel)]="flightId" required disabled>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-label>Imagen del vuelo:</mat-label>
         <img [src]="flightImage" alt="Flight Image" class="flight-image">
       </div>
-      <button type="submit" routerLink="/pagar" class="submit-button">PAGAR ... </button>
+      <button mat-raised-button type="submit" routerLink="/pagar" class="submit-button">PAGAR ...</button>
     </form>
   </div>
 </section>

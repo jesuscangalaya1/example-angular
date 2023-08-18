@@ -36,29 +36,49 @@ export class ListaComprasComponent implements OnInit {
 
 
   exportToPDF(id: number): void {
+    this.loading = true; // Establecer el estado de carga a true
+
 
     this.purchaseService.exportInvoice(id).subscribe((data: Blob) => {
-      const blob = new Blob([data], {type: 'application/pdf'});
-      const blobUrl = URL.createObjectURL(blob);
+        const blob = new Blob([data], {type: 'application/pdf'});
+        const blobUrl = URL.createObjectURL(blob);
 
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = `Invoice_${id}.pdf`;
-      link.target = '_blank';
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = `Invoice_${id}.pdf`;
+        link.target = '_blank';
 
-      // Disparamos el evento de clic para descargar el PDF
-      const clickEvent = new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: false,
-      });
-      link.dispatchEvent(clickEvent);
 
-      // Liberamos la URL segura del Blob después de unos segundos
-      setTimeout(() => {
-        URL.revokeObjectURL(blobUrl);
-      }, 100);
-    });
+        this.loading = false; // Restablecer el estado de carga a false después de la exportación
+
+
+        // Disparamos el evento de clic para descargar el PDF
+        const clickEvent = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: false,
+        });
+
+
+
+        link.dispatchEvent(clickEvent);
+
+
+        // Liberamos la URL segura del Blob después de unos segundos
+        setTimeout(() => {
+          URL.revokeObjectURL(blobUrl);
+
+          this.alertService.notification('Boleto Exportado ... ', 'success'); // Muestra una notificación de éxito
+
+        }, 1000);
+
+      },
+      (error) => {
+        console.log(error);
+        this.alertService.notification('Error', 'error'); // Muestra una notificación de error
+        this.loading = false; // Restablecer el estado de carga a false en caso de error
+      }
+    );
   }
 
 
@@ -132,7 +152,6 @@ export class ListaComprasComponent implements OnInit {
   }
 
 
-
   loadCustomerPurchases() {
     this.loading = true;
 
@@ -150,7 +169,6 @@ export class ListaComprasComponent implements OnInit {
       }
     );
   }
-
 
 
 }

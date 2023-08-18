@@ -1,220 +1,130 @@
-*{
+
+
+body, html {
+  height: 100%;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
-  scroll-behavior: smooth;
-  font-family: 'Arvo', serif;
-}
-html::-webkit-scrollbar-track{
-  background: transparent;
 }
 
-.reserva {
-
+/* Estilo general del navbar */
+mat-toolbar {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-.card1 {
-  width: 200px; /* Ajusta el tamaño deseado */
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  text-align: center;
-}
-
-.card1 img {
-  width: 100%;
-  height: auto;
-}
-
-
-button {
-  transition: background-color 0.2s ease;
-}
-
-.titulo-reserva {
-  font-size: 24px; /* Tamaño de fuente */
-  color: #3f51b5; /* Color del texto */
-  text-transform: uppercase; /* Convertir el texto a mayúsculas */
-  font-weight: bold; /* Texto en negrita */
-  margin: 0; /* Espaciado cero */
-  padding: 5px 0; /* Espaciado superior e inferior */
-  border-bottom: 2px solid #3f51b5; /* Línea inferior */
-}
-
-.image-container {
-  position: relative;
-  display: inline-block;
-  border: 10px solid #fff; /* Agregar marco blanco a la imagen */
-  border-radius: 5px; /* Ajustar según prefieras */
-  overflow: hidden; /* Para asegurar que el marco contenga la imagen */
-}
-
-.image-container img {
-  width: 100%;
-  height: auto;
-}
-
-/* Estilos para el botón dentro de la imagen */
-.image-container button {
-  position: absolute;
-  bottom: 5px; /* Alinear el botón en el lado inferior */
-  right: 5px; /* Alinear el botón al lado derecho */
-  z-index: 1;
-}
-//botones
-.custom-button {
-  background-color: #ff4500;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.separated-button {
-  margin-left: 30px;
-}
-
-div.btn-item-left {
-  left: 10px;
-
-}
-
-.custom-button:hover {
-  background-color: #ff5722;
-}
-
-//asd
-.imagen {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  margin-top: -20px;
-}
-
-
-
-
-//dsd
-
-html::-webkit-scrollbar-thumb{
-  background: #ffa500;
-  border-radius: 10px;
-}
-html::-webkit-scrollbar{
-  width: 10px;
-}
-body{
-  background-image: url("https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-
-}
-/* Header Start */
-
-nav.navbar {
-  background-color: transparent;
-  position: absolute;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1976d2; /* Color primario del navbar */
+  position: sticky;
   top: 0;
-  width: 100%;
-  z-index: 999;
-}
-#navbar{
-  background-color: transparent;
-  position: absolute;
-  top: 0;
-  width: 100%;
   z-index: 999;
 }
 
-
-#logo{
+/* Estilo de la marca */
+.navbar-brand {
   font-size: 36px;
   font-weight: 700;
-  color: black;
+  color: white;
   text-shadow: 0px 1px 1px black;
   margin-bottom: 5px;
+  text-decoration: none;
 }
-#logo span{
+
+.navbar-brand img {
+  height: 30px;
+  margin-right: 5px;
+}
+
+.navbar-brand span {
   color: orange;
 }
-.navbar-toggler span{
-  color: orange;
-  outline: none;
-}
-.navbar-nav{
-  margin-left: 20px;
-}
-.nav-item .nav-link{
+
+/* Estilo de los ítems del navbar */
+/* Estilo de los ítems del navbar */
+.mat-button {
   font-size: 16px;
   font-weight: 550;
-  color: black;
+  color: white;
   letter-spacing: 1px;
   border-radius: 3px;
+  text-decoration: none;
+  padding: 8px 15px;
   transition: 0.5s ease;
 }
-.nav-item .nav-link:hover{
+
+.mat-button:hover {
   background: orange;
   color: white;
 }
-#navbar form button{
+
+/* Estilo del campo de búsqueda */
+mat-form-field {
+  margin-left: 15px;
+}
+
+mat-form-field input {
+  color: white;
+}
+
+/* Estilo del botón "Listar compras" */
+.home button[mat-raised-button] {
+  margin-left: 15px;
   background: orange;
   color: white;
   border: none;
-}
-/* Header End */
-.logo-img {
-  max-width: 100px;
-  height: auto;
-}
-.main-txt {
-  text-align: center;
-  padding-top: 30px;
+  margin-bottom:50px;
 }
 
-.main-txt h1 {
-  font-size: 36px;
-  font-weight: bold;
-  color: #ff4500; /* Color naranja llamativo */
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.home .content h1{
+  margin-bottom:60px;
+}
+.spacer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
-.main-txt h1 span {
-  display: block;
-  font-size: 24px;
-  color: #333; /* Color de texto oscuro */
+.mat-toolbar .mat-button-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-.main-txt h1 span::before {
-  content: "\2022"; /* Agrega un punto de bala antes del texto */
-  color: #ff4500; /* Color naranja */
-  margin-right: 10px;
+.logout-button {
+  left: 10px;
+  background-color: red; /* Cambiar el color de fondo a rojo */
 }
 
-.main-txt h1 span::after {
-  content: "\2022"; /* Agrega un punto de bala después del texto */
-  color: #ff4500; /* Color naranja */
-  margin-left: 10px;
+
+
+.changecontent::after{
+  content: ' ';
+  color: #ffa500;
+  text-shadow: 1px 1px 1px black;
+  animation: changetext 10s infinite linear;
 }
 
-/* Home Content Start   */
-
+@keyframes changetext{
+  0%{content: "Francia";}
+  10%{content: "España";}
+  20%{content: "Estados Unidos";}
+  30%{content: "China";}
+  40%{content: "India";}
+  50%{content: "Pakistan";}
+  60%{content: "Italia";}
+  70%{content: "Turquia";}
+  80%{content: "Mexico";}
+  90%{content: "Alemania";}
+  100%{content: "Inglaterra";}
+}
+/* Home */
 .home {
   width: 100%;
-  height: 100vh;
-  background-image: url("https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg");
+  height: auto;
+  background-image: url("https://img.freepik.com/vector-gratis/fondo-viaje-realista-elementos_52683-77784.jpg?w=1380&t=st=1691713228~exp=1691713828~hmac=5766b412721ae7600ac0cb01a4a40e2da7183f3a9eceee435b7ba042ce2f12b8");
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .home .content{
   text-align: center;
   padding-top: 200px;
@@ -240,25 +150,7 @@ nav.navbar {
   margin-bottom: 30px;
   margin-top: 5px;
 }
-.changecontent::after{
-  content: ' ';
-  color: #ffa500;
-  text-shadow: 1px 1px 1px black;
-  animation: changetext 10s infinite linear;
-}
-@keyframes changetext{
-  0%{content: "Francia";}
-  10%{content: "España";}
-  20%{content: "Estados Unidos";}
-  30%{content: "China";}
-  40%{content: "India";}
-  50%{content: "Pakistan";}
-  60%{content: "Italia";}
-  70%{content: "Turquia";}
-  80%{content: "Mexico";}
-  90%{content: "Alemania";}
-  100%{content: "Inglaterra";}
-}
+
 .home .content a{
   padding: 10px;
   background: white;
@@ -289,324 +181,515 @@ nav.navbar {
     font-size: 13px;
   }
 }
-/* Home Content End   */
-.book{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
+
+.home .container {
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 1rem;
-  background: #f9f9f9;
-  padding: 100px 10% 120px;
+  padding: 20px;
+  flex-wrap: wrap;
 }
-.book-img img{
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0px 5px 5px -6px black;
-  width: 100%;
-  display: block;
+
+.home .card1 {
+  flex: 1;
+  max-width: 300px;
+  margin-right: 20px;
+
 }
-.book-form form{
+
+.home .image-container {
   position: relative;
+  text-align: center;
+  flex-direction: row;
 }
-.book-form form input,
-form textarea{
-  width: 100%;
-  padding: 15px;
-  background: white;
-  color: black;
-  border: none;
-  outline: none;
-  font-size: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 5px 5px -6px black;
-  margin-bottom: 10px;
+
+.home .image-container img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  flex-direction: row;
 }
-.book-form textarea{
-  resize: none;
-  height: 200px;
+
+.home .button {
+  position: absolute;
+  bottom: 3px;
+  right: 20px;
+  padding: 5px;
+  flex-direction: row;
 }
-.book-form .submit{
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 600;
-  background: orange;
-  width: 160px;
-  transition: 0.5s ease;
-  cursor: pointer;
+
+.home .spacer {
+  margin-right: 25px;
 }
-.book-form .submit:hover{
-  width: 175px;
-}
-@media (max-width:920px){
-  .book{
-    grid-template-columns: 1fr;
-    max-width: 100%;
+/* RESPONSIVE CAMVIO DE ZOOM */
+@media (max-width: 1280px) and (max-height: 720px) {
+  .home .horizontal-cards-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .home .mat-card {
+    flex: 1 1 calc(33.33% - 20px);
+    margin: 10px;
   }
 }
 
-/* Packages Start */
-.packages {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* END HOMME */
+
+
+
+/* PAQUETES */
+.packages{
+  width: 100%;
   height: 100vh;
-  background-image: url('https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_1280.jpg');
+  background-image: url("https://img.freepik.com/vector-gratis/fondo-viaje-diseno-plano_23-2148050086.jpg?w=1380&t=st=1691713678~exp=1691714278~hmac=b18635ea00cda15a713735483df24e99e0abc60309e281b93e7c079fc912f7ed");
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.card {
-  width: 300px; /* Ajusta el tamaño deseado */
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  text-align: center;
-  margin: 20px;
-}
-
-.card img {
-  width: 100%;
-  height: 200px; /* Ajusta la altura deseada */
-  object-fit: cover;
-  border-radius: 5px 5px 0 0;
-}
-
-.card .card-body {
-  padding: 15px;
-}
-
-.star {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.packages .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.packages h1{
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 0px 5px 3px rgb(8, 32, 255);
+  font-size: 70px;
+}
+
+
+.packages h1 span{
+  color: #ffa500;
+
+}
+
+.packages main-txt h1{
+  font-size: 28px;
+  color: #ffffff;
+}
+.packages main-txt{
+  margin-bottom: 20px;
+}
+
+.packages .flight-image-container {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.packages .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f5f5f5;
+
+}
+
+.packages .flight-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.packages .flight-card {
+  flex: 1 1 calc(33.33% - 20px);
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
-.star i {
-  font-size: 15px;
-  color: #ff4500;
+.packages .flight-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
 }
 
-.checked {
-  color: orange;
+.packages .star-rating {
+  display: flex;
+  gap: 5px;
+  color: gold;
 }
 
-.card h3 {
-  font-size: 20px;
-  font-weight: 600;
-  color: #333;
-  margin: 10px 0;
+.packages h6 {
+  margin-top: 15px;
+  font-size: 1.2rem;
 }
 
-.card p {
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #777;
-}
-
-.card h6 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 15px 0;
-}
-
-.card a {
-  display: inline-block;
-  padding: 10px 20px;
-  text-decoration: none;
-  background: orange;
-  color: white;
+.packages a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
   border-radius: 5px;
+  text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
-.card a:hover {
-  background-color: #ff6600;
+.packages a:hover {
+  background-color: #0056b3;
 }
-/* Packages End */
+/* END PAQUETES */
 
-/* Services Start */
-.services{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+/* SERVICIOS  */
+.services {
   width: 100%;
   height: 100vh;
-  background-image: url('https://cdn.pixabay.com/photo/2018/11/29/21/19/hamburg-3846525_1280.jpg');
+  background-image: url("https://img.freepik.com/psd-premium/vista-superior-concepto-viaje-camara_23-2148539012.jpg?w=1380");
   background-repeat: no-repeat;
   background-size: cover;
-}
-.services .card{
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  border: none;
-  cursor: pointer;
-}
-.services .card i{
-  font-size: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 60px;
   text-align: center;
-  color: orange;
-  margin-top: 20px;
 }
-.services .card .card-body h3{
-  font-weight: 700;
+
+.service-card .text-center h3{
+  color: #e9c914c9;
+  font-size: 24px;
+  margin-top: 70px;
 }
-/* Services End */
 
 
-
-/* Gallary Start */
-.gallary{
+.service-card {
+  flex: 1; /* Distribuye el espacio disponible de manera uniforme */
+  max-width: 250px; /* Ajusta según tus necesidades */
+  height: 150px;
+  margin: 10px; /* Ajusta según tus necesidades */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-image: url('https://cdn.pixabay.com/photo/2018/01/31/12/16/architecture-3121009_1280.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-
-}
-.gallary .card{
+  text-align: center;
+  padding: 20px;
+  background-color: white;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
   cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
-.gallary .card img{
-  border-radius: 10px;
-  transition: 0.5s ease;
+
+.services .service-icon {
+  font-size: 25px;
+  color: rgba(49, 81, 224, 0.897);
 }
-.gallary .card:hover img{
-  transform: scale(1.1);
+
+.services .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
 }
-/* Gallary End */
 
+.services .main-txt {
+  text-align: center;
+  padding-top: 10px;
+  color: #0056b3;
 
+}
 
+.services h1 span{
+  color: #ffa500;
 
+}
 
-/* About Start */
-.about{
+.services .main-txt h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 0px 5px 3px rgb(8, 32, 255);
+  font-size: 80px;
+}
+
+.services .row{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+}
+
+.services .card-body h3 {
+  font-size: 1.2rem;
+}
+
+
+
+/* END SERVICES */
+/* GALERY */
+/* Estilos para la galería */
+.gallary {
   width: 100%;
   height: 100vh;
-  background-image: url('https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727_1280.jpg');
+  background-image: url("https://img.freepik.com/vector-gratis/dibujado-mano-viajes-fondo-azul_23-2149033527.jpg?w=1380&t=st=1691713723~exp=1691714323~hmac=4db024ad21fb4fff4c18f33024dea0fabdae771ddf845bd7c361c623513e380e");
   background-repeat: no-repeat;
   background-size: cover;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.gallary .row{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1000px; /* Ajusta el valor según tus necesidades */
+  margin: 0 auto; /* Centra la fila en la página si es necesario */
+}
+
+.gallary .container {
+  flex-basis: 33.33%;
+  padding-top: 0.75rem; /* Ajusta el valor según tu preferencia */
+  padding-bottom: 0.75rem; /* Ajusta el valor según tu preferencia */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Estilos para las tarjetas de la galería */
+.gallery-card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(2.2);
+  }
 
 }
-.about .card{
+
+/* Estilos para el contenedor de la imagen */
+.gallary .image-container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f0f0f0; /* Cambia este color de fondo según tus preferencias */
   border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 190px;
 }
-.about .card img{
-  border-radius: 10px;
+
+/* Estilos para las imágenes dentro del contenedor */
+.gallary .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.about h2{
-  font-weight: 600;
-  letter-spacing: 1px;
+
+.gallary h1 span{
+  color: #ffa500;
+
 }
-.about p{
-  font-size: 500px;
+
+.matimagen {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
-#about-btn{
-  width: 150px;
-  height: 38px;
+
+.gallary .main-txt h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 0px 5px 3px rgb(8, 32, 255);
+  font-size: 70px;
+}
+
+
+/* END GALERY */
+/* ABOUT */
+
+.about {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  text-align: center;
+  padding: 60px 0;
+  background-image: url("https://img.freepik.com/foto-gratis/concepto-viaje-puntos-referencia_23-2149153256.jpg?w=1380&t=st=1691713785~exp=1691714385~hmac=51de47d48d6f4de0e39fefb5cf447f70a1c8f54ce6cb2914f3297b91b542f395");
+  display: flex; /* Agregado */
+  align-items: center; /* Agregado */
+}
+
+
+
+.about .content{
+  width: 50%; /* La columna ocupará la mitad del ancho del contenedor */
+  flex: 0 0 50%;
+  padding-top: 0.75rem; /* 12px */
+  padding-bottom: 0.75rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.about h1 span{
+  color: #ffa500;
+
+}
+
+.about .mat-card-header{
+  align-content: center;
+}
+.about .main-txt h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 0px 5px 3px rgb(8, 32, 255);
+  font-size: 70px;
+  align-items: center;
+}
+
+.about .mat-card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 5px;
+  padding: 40px;
+}
+
+.about h1{
+  font-size: 50px;
+  margin-bottom: 40px;
+  color: #1c38d6;
+  right: 50px;
+  text-align: center;
+  right: 50px;
+}
+
+.about p {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0c0c0c;
+}
+
+#about-btn {
+  font-size: 18px;
+  padding: 12px 40px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
-  background: #ffa500;
-  color: white;
-  letter-spacing: 2px;
-  font-weight: 550;
-  transition: 0.5s ease;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
-#about-btn:hover{
-  width: 170px;
+
+#about-btn:hover {
+  background-color: #0056b3;
 }
-/* About End */
 
-
-
-
-
-/* Reviews Start */
-.review{
-  padding: 100px 10% 120px;
-  background: white;
+#about-btn:focus {
+  outline: none;
 }
-.review-content{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+
+.about .image-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 2.5rem;
-  margin-top: 5rem;
-}
-.box{
-  background: #f9f9f9;
-  padding: 35px 45px;
-  height: 50vh;
-  border-radius: 8px;
-  transition: 0.5s ease;
-  text-align: center;
-}
-.img img{
-  width: 100px;
-  border-radius: 100px;
-}
-@media (max-width:920px){
-  .services-content{
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width:550px){
-  .service a{
-    display: block;
-    margin-top: 10px;
-  }
-}
-/* Reviews Start */
-
-
-/* Estilos específicos para la sección */
-
-
-h2 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #c6fa0b;
-  margin-bottom: 10px;
+  height: 100%;
 }
 
+.about .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* END ABOUT */
 
-/* Footer Start */
+
+/* FOOTER */
 #footer{
   width: 100%;
   text-align: center;
-  background: #f9f9f9;
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
+}
+.footer-container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
 }
 
-#footer h1{
-
-  padding-top: 30px;
-  text-shadow: 0px 0px 1px black;
+#footer h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
-#footer h1 span{
-  color: #ffa500;
+#footer h1 span {
+  color: #007bff;
 }
-.social-links i{
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 20px;
-  background: black;
-  color: white;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  transition: 0.5s ease;
-  cursor: pointer;
+
+.social-links a {
+  font-size: 24px;
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s;
 }
-.social-links i:hover{
-  background: #ffa500;
+
+.social-links a:hover {
+  color: #007bff;
 }
-/* Footer End */
+
+.copyyright p {
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.fa-brands:before {
+  font-family: "Font Awesome 5 Brands";
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  #footer {
+    padding: 20px 0;
+  }
+}

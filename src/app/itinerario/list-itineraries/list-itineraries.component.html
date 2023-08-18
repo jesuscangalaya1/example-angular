@@ -101,7 +101,7 @@
     <div style="text-align: center;min-height: 500px; margin-left: 20px; margin-right: 20px; margin-top: 40px; ">
 
 
-      <div class="file-container">
+     <div class="file-container">
         <label for="fileInput" class="file-label">
           <input (change)="selectedFile($event)" type="file" id="fileInput" #fileInput>
           <span class="file-custom-input">Choose File</span>
@@ -110,6 +110,7 @@
                 [disabled]="!fileInput.files || fileInput.files.length === 0">Import
         </button>
       </div>
+
 
 
 
