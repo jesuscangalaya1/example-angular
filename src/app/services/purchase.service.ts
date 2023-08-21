@@ -13,7 +13,7 @@ export class PurchaseService {
   url = environment.URL;
 
   //local = "http://localhost:8080/api/";
-  local = "https://api-2-e35q.onrender.com/api/";
+  local = "https://api-agencia-viajes.up.railway.app/api/";
   constructor(private http: HttpClient,
               private tokenService: TokenService) {}
 

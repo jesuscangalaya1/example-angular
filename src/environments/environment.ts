@@ -13,9 +13,9 @@ export const environment = {
   //changePasswordURL: 'http://localhost:8080/email-password/'
 
 
-  URL:'https://api-2-e35q.onrender.com/api/',
-  authURL:'https://api-2-e35q.onrender.com/auth/',
-  changePasswordURL:'https://api-2-e35q.onrender.com/email-password/'
+  URL:'https://api-agencia-viajes.up.railway.app/api/',
+  authURL:'https://api-agencia-viajes.up.railway.app/auth/',
+  changePasswordURL:'https://api-agencia-viajes.up.railway.app/email-password/'
 
 };
 
