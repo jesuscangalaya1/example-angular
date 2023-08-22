@@ -68,6 +68,8 @@ import { TestimonialStartComponent } from './view-user/pages/testimonial-start/t
 import { FooterComponent } from './view-user/pages/footer/footer.component';
 import { IndexHomeComponent } from './view-user/index-home/index-home.component';
 
+import { environment } from 'src/environments/environment';
+import {NgGoogleOneTapModule} from "ng-google-one-tap";
 import { GmailHomeComponent } from './auth/gmail-home/gmail-home.component';
 import { ListUsuariosComponent } from './usuarios/list-usuarios/list-usuarios.component';
 import { ListItinerariesComponent } from './itinerario/list-itineraries/list-itineraries.component';
@@ -174,7 +176,17 @@ import { LoadingComponent } from './loading/loading.component';
         MatCardModule,
         NgxBraintreeModule,
         MatPaginatorModule,
+        NgGoogleOneTapModule.config(
+            {  //Look options table for some more avaialbe options and config here.
+                client_id: environment.clientId,
+                cancel_on_tap_outside: false,
+                authvalidate_by_googleapis: false,
+                auto_select: false,
+                disable_exponential_cooldowntime: false,
+                context: 'signup'
+            }),
         MatProgressSpinnerModule
+
 
     ],
   providers: [DatePipe],
