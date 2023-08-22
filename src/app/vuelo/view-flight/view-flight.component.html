@@ -32,8 +32,8 @@
     <button mat-menu-item>Size</button>
   </mat-menu>
 
-  <button routerLink="input" mat-button>Input</button>
-  <button routerLink="autocomplete" mat-button>Autocomplete</button>
+  <button mat-button>Input</button>
+  <button mat-button>Autocomplete</button>
   <div class="form-inline">
     <form>
       <button *ngIf="!isLogged" mat-flat-button color="accent" routerLink="/login" class="form-button">
@@ -51,13 +51,13 @@
   <mat-drawer #drawer opened="true" mode="side" position="start">
     <mat-nav-list>
       <mat-list-item>
-        <button routerLink="card" mat-button>
+        <button mat-button>
           <mat-icon>dashboard</mat-icon>
           Dashboard
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button routerLink="" mat-button>
+        <button mat-button>
           <mat-icon>home</mat-icon>
           Home
         </button>

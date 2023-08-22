@@ -14,22 +14,30 @@
 <body>
 <!--NavBar-->
 <mat-toolbar color="primary" class="mat-elevation-z8">
-  <a class="navbar-brand" routerLink="/inicio" id="logo">
+  <a class="navbar-brand" id="logo">
     <img class="logo-img" src="assets/images/logo.png" alt="">
     <span>A</span>dventures
   </a>
 
   <div class="spacer">
 
-    <a mat-button routerLink="home">Inicio</a>
+    <a mat-button >Inicio</a>
     <a mat-button cdkScrollLink="'packages'">Paquetes</a>
-    <a mat-button routerLink="services">Servicios</a>
-    <a mat-button routerLink="gallary">Galeria</a>
-    <a mat-button routerLink="about">Contacto</a>
+    <a mat-button >Servicios</a>
+    <a mat-button >Galeria</a>
+    <a mat-button >Contacto</a>
   </div>
   <button mat-raised-button color="primary" routerLink="/lista-compras">Listar compras</button>
-  <button mat-raised-button class="logout-button" color="warn">Cerrar Cesion</button>
-</mat-toolbar>
+  <form>
+    <button *ngIf="!isLogged" mat-flat-button color="accent" routerLink="/login" class="form-button">
+      <mat-icon>login</mat-icon>
+      Iniciar Sesión
+    </button>
+    <button *ngIf="isLogged" mat-flat-button color="warn" (click)="onLogOut()" class="form-button">
+      <mat-icon>exit_to_app</mat-icon>
+      Cerrar Sesión
+    </button>
+  </form></mat-toolbar>
 <!--NavBar Finalll-->
 
 <section class="home" id="home">
@@ -83,10 +91,15 @@
 <!-- LISTAR VUELOS - CON PAGINACION  START-->
 
 <section class="packages" id="packages">
-  <div class="container">
-    <div class="main-txt">
-      <h1><span>P</span>AQUETES</h1>
+  <div class="spacing">
+    <div class="container">
+      <div class="main-txt">
+        <h1><span>P</span>AQUETES</h1>
+      </div>
     </div>
+  </div>
+  <div class="spacing">
+
     <mat-card class="card-container">
       <div class="flight-list">
         <mat-card class="flight-card" *ngFor="let flight of dataSource?.data">
@@ -109,6 +122,8 @@
       </div>
     </mat-card>
   </div>
+
+
   <!--
    <mat-paginator
     [pageIndex]="currentPage - 1"
@@ -182,34 +197,37 @@
 <!-- Gallary Start -->
 <!-- Gallary Start -->
 <section class="gallary" id="gallary">
-  <div class="container">
-    <div class="main-txt">
-      <h1><span>G</span>aleria</h1>
-    </div>
-    <div class="row">
-      <div class="container">
-        <mat-card class="gallery-card">
-          <div class="image-container">
-            <img mat-card-image src="assets/images/g1.png" alt="">
-          </div>
-        </mat-card>
-      </div>
-      <div class="container">
-        <mat-card class="gallery-card">
-          <div class="image-container">
-            <img mat-card-image src="assets/images/g2.png" alt="">
-          </div>
-        </mat-card>
-      </div>
-      <div class="container">
-        <mat-card class="gallery-card">
-          <div class="image-container">
-            <img mat-card-image src="assets/images/g3.png" alt="">
-          </div>
-        </mat-card>
+  <div class="spacing">
+    <div class="container">
+      <div class="main-txt">
+        <h1><span>G</span>aleria</h1>
       </div>
     </div>
-
+    <div class="spacing">
+      <div class="row">
+        <div class="container">
+          <mat-card class="gallery-card">
+            <div class="image-container">
+              <img mat-card-image src="assets/images/g1.png" alt="">
+            </div>
+          </mat-card>
+        </div>
+        <div class="container">
+          <mat-card class="gallery-card">
+            <div class="image-container">
+              <img mat-card-image src="assets/images/g2.png" alt="">
+            </div>
+          </mat-card>
+        </div>
+        <div class="container">
+          <mat-card class="gallery-card">
+            <div class="image-container">
+              <img mat-card-image src="assets/images/g3.png" alt="">
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
 
   </div>
 </section>

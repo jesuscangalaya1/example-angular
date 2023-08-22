@@ -187,7 +187,6 @@ import { LoadingComponent } from './loading/loading.component';
             }),
         MatProgressSpinnerModule
 
-
     ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

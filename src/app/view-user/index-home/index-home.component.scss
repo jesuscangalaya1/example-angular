@@ -1,5 +1,3 @@
-
-
 body, html {
   height: 100%;
   margin: 0;
@@ -244,20 +242,26 @@ mat-form-field input {
 
 /* PAQUETES */
 .packages{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100vh;
   background-image: url("https://img.freepik.com/vector-gratis/fondo-viaje-diseno-plano_23-2148050086.jpg?w=1380&t=st=1691713678~exp=1691714278~hmac=b18635ea00cda15a713735483df24e99e0abc60309e281b93e7c079fc912f7ed");
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
   padding-top: 60px;
   text-align: center;
+
+}
+
+.packages .spacing {
+  height: 300px; /* Ajusta separación deseada */
 }
 
 .packages .container {
+
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -269,6 +273,7 @@ mat-form-field input {
   text-shadow: 0px 5px 3px rgb(8, 32, 255);
   font-size: 70px;
 }
+
 
 
 .packages h1 span{
@@ -298,6 +303,7 @@ mat-form-field input {
   background-color: #f5f5f5;
 
 }
+
 
 .packages .flight-list {
   display: flex;
@@ -459,20 +465,29 @@ mat-form-field input {
   background-size: cover;
   text-align: center;
   padding: 40px 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+
+.gallary .spacing{
+  height: 600px; /* Ajusta separación deseada */
 }
 
 .gallary .row{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 1000px; /* Ajusta el valor según tus necesidades */
-  margin: 0 auto; /* Centra la fila en la página si es necesario */
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .gallary .container {
   flex-basis: 33.33%;
-  padding-top: 0.75rem; /* Ajusta el valor según tu preferencia */
-  padding-bottom: 0.75rem; /* Ajusta el valor según tu preferencia */
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -538,6 +553,9 @@ mat-form-field input {
   font-size: 70px;
 }
 
+.gallary .main-txt{
+  margin-bottom: 300px;
+}
 
 /* END GALERY */
 /* ABOUT */
